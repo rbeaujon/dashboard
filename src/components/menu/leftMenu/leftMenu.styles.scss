@@ -1,0 +1,143 @@
+* {
+  box-sizing:border-box;
+}
+
+.leftMenu {
+  width: 20vw;
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  .closeButton {
+    display: none;
+  }
+  .logo {
+    position: absolute;
+    top: 10px;
+    left: 42px;
+    img {
+      width: 80px;
+    }
+  }
+  .icons {
+    position: absolute;
+    top: 115px;
+    left: 42px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      padding: 10px;
+      margin-top: 10px;
+      &:hover {
+        width: 14vw;
+        padding: 10px;
+        border-radius: 7px;
+        background-color: #0994E2;
+        
+        img{ 
+          width: 30px;
+          background-color: transparent;
+          filter:invert(100%);
+        }
+        label {
+          color: white;
+          background-color: transparent;
+        } 
+      }
+      img {
+        width: 30px;
+        background-color: white;
+      }
+      
+      label {
+        background-color: white;;
+        width: 100%;
+        font-size: 14px;
+        color: #777777;
+        margin-left: 10px;
+        text-align: left;
+      }
+    }
+  }
+  
+}
+
+/*** RESPONSIVE DESIGN ***/
+
+/* Mobiles */
+@media only screen and (max-width: 320px) {
+
+}
+
+@media only screen and (min-width: 321px) and (max-width: 767px) {
+
+  .leftMenu {
+    transition: width 0.5s ease-in-out;
+    width: 0;
+    border-right: 0.5px solid rgb(114, 113, 113);
+
+    .container {
+      opacity: 0;
+    }
+
+    &.activeMenu {
+      display: block;
+      width: 100vw;
+      
+      .container {
+        opacity: 1;
+        transition: opacity 1s ease-in-out;
+        transition-delay: 0.2s;
+      }
+      .closeButton {
+        display: block;
+        position: absolute;
+        top: 32px;
+        left: 20px;
+        border: 0;
+        font-size: 25px;
+        opacity: 0.7s;
+        background-color: transparent;
+      }
+      .logo {
+        position: absolute;
+        top: 5px;
+        left: 70vw;
+        img {
+          width: 80px;
+        }
+      }
+      .icons {
+        align-items: center;
+        align-content: center;
+        top: 90px;
+        opacity: 0.7;
+
+        
+        img {
+          width: 66px;
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+}
+
+
+/* Tablet */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Laptop */
+@media only screen and (min-width: 992px) {
+
+}
