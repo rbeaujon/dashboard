@@ -83,7 +83,7 @@
     transition: width 0.5s ease-in-out;
     width: 0;
     border-right: 0.5px solid rgb(114, 113, 113);
-
+    
     .container {
       opacity: 0;
     }
@@ -116,16 +116,25 @@
         }
       }
       .icons {
-        align-items: center;
-        align-content: center;
+        width: 100%;
         top: 90px;
         opacity: 0.7;
-
-        
-        img {
-          width: 66px;
-          margin-top: 15px;
+        div {
+          &:hover {
+            width: 80vw;
+            padding: 10px;
+          }
+          img {
+            width: 40px;
+            height: 40px;
+            margin-top: 5px;
+          }
+          label{
+            font-size: 20px;
+            margin-left: 20px;
+          }
         }
+
       }
     }
   }
