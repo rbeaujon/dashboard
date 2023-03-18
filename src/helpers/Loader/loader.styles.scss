@@ -1,0 +1,107 @@
+.loader-overlay {
+  position:absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: background-color 2s ease-in-out;  
+  .loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    text-align: center;
+    background-color: transparent;
+  
+    .spin {
+      position: relative;
+      border: 0; 
+      border-top: 7px solid #3498db;
+      border-radius: 50%; 
+      background-color: transparent;
+      width: 100px;
+      height: 100px;
+      animation: spin 2s linear infinite;
+    }
+  
+    .text-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      background-color: transparent;
+  
+      .cargando {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        position: relative;
+        width: 80px;
+        background-color: transparent;
+        
+        p {
+          margin-right: 5px;
+          font-size: 10px;
+          font-weight: bold;
+          text-transform: uppercase;
+          background-color: transparent;
+          color: white;;
+        }  
+      }
+      .dots-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10px;
+        width: 40px;
+        margin-top: 5px;
+        background-color: transparent;
+        span {
+          display: block;
+          height: 3px;
+          width: 3px;
+          margin: 0 5px;
+          border-radius: 50%;
+          animation: dot 2s linear infinite;
+        }
+      
+        span:nth-child(2) {
+          animation-delay: 0.4s;
+        }
+      
+        span:nth-child(3) {
+          animation-delay: 0.6s;
+        }
+      }
+
+    }
+  }
+  
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes dot {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes blink {
+  from, to { opacity: 1 }
+  50% { opacity: 0.4 }
+}

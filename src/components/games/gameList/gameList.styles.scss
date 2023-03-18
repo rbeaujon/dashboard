@@ -1,0 +1,57 @@
+.gameList-main {
+  position: absolute;
+  left: 22vw;
+  bottom: 20px;
+  background: white;
+  height: 32vh;
+  width: 74vw;
+  overflow-y: auto;
+  border-radius: 5px;
+  .gameList-search {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    border: none;
+    background-color: #c0c0c039;
+    color: #707070;
+    padding: 5px;
+    border-radius: 5px;
+    &::placeholder {
+      color:#70707093;
+    }
+  }
+  .gameList-searchIcon {
+    position: absolute;
+    right: 25px;
+    top: 15px;
+    width: 15px;
+  }
+  table {
+    position: absolute;
+    margin-top: 40px;
+    width: 100%;
+    text-align: center;
+    th {
+      color: #818181;
+      position: sticky;
+      top:0;
+      padding: 5px;
+    }
+    tbody {
+
+      td {
+        color: #8C8C8C;
+        padding: 5px;
+      }
+      #name, #category {
+        text-align: left;
+      }
+    }
+    .gameList-action {
+      &:hover{
+      color: black;
+      }
+    }
+    
+  }
+}
