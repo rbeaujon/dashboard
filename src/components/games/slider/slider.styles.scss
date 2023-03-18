@@ -1,0 +1,106 @@
+* {
+  background-color: #FAFAFA;
+}
+.slider-main {
+  width: 74vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.slider-container, .game-selected {
+  position: relative;
+  display: flex;
+  flex-basis: 50%;
+}
+.slider-container .slider-grid .slider .image-container img {
+  border: 1px solid rgb(184, 183, 183);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+.slider-container {
+  top: 15vh;
+  left: 20vw;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .slider-grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40vw;
+    height: 45vh;
+    .slider {
+      width: 33.33%;
+      display: flex; 
+      justify-content: center;
+      padding: 10px;
+      .image-container {
+        position: relative;
+        width: 10vw;
+        height: 21vh;
+        .image-frame {
+          position:absolute;
+          width: 100%;
+          height: 30%;
+          bottom: 0px;
+          border-top: 0.5px solid rgba(2, 2, 2, 0.355);
+          border-radius: 0 0 10px 10px;
+          text-align: center;
+          background-color: #b0b0b0c0;
+
+          div {
+            position:absolute;
+            background-color: transparent;
+            color: #ffffff;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 500;
+            text-shadow: 2px 2px 20px #0994E2;
+            text-transform: uppercase;
+            top: 50%;
+            transform: translate(0, -50%);
+
+          }
+        }
+      }
+
+    }
+  }
+  .prev {
+    position: absolute;
+    top: 50%; 
+    left: 7px;
+    width: 20px;
+  }
+  .next {    
+    position: absolute;
+    top: 50%;    
+    right: 7px;
+    width: 19px;
+  }
+  .slider-error {
+    position: absolute;
+    width: 100%;
+    text-align: justify;
+    color: rgb(238, 9, 9);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 60px;
+  }
+}
+.game-selected {
+  position: relative;
+  top: 17vh;
+  left:21vw;
+  img {
+    position: absolute;
+    border-radius: 10px;
+    width: 100%;
+    height: 45vh;
+    border: 1px solid rgb(184, 183, 183);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.466);
+  }
+}
