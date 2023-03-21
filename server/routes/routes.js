@@ -8,7 +8,7 @@ const cors = require('cors');
 const router = express.Router();
 
 //Users Controller routes
-router.post('/users',cors(),  usersController.getUsers);
+router.get('/users',cors(),  usersController.getUsers);
 router.post('/users',cors(),  usersController.postUsers);
 router.delete('/users',cors(),  usersController.deleteUsers);
 router.put('/users',cors(),  usersController.putUsers);

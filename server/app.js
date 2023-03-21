@@ -16,7 +16,7 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
 
 // Assign Routes
 app.use('/', routes);
