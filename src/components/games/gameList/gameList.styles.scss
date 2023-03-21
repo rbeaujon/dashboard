@@ -9,7 +9,7 @@
   border-radius: 5px;
   .gameList-search {
     position: absolute;
-    right: 20px;
+    right: 70px;
     top: 10px;
     border: none;
     background-color: #c0c0c039;
@@ -20,9 +20,31 @@
       color:#70707093;
     }
   }
+  .gameList-add {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    width: 18px;
+    &:hover {
+      animation: rotate 2s linear infinite;
+    }
+    
+    @keyframes rotate {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+        filter:opacity(30%)
+      }
+      100% {
+        transform: scale(1) ;
+      }
+    }
+  }
   .gameList-searchIcon {
     position: absolute;
-    right: 25px;
+    right: 75px;
     top: 15px;
     width: 15px;
   }
@@ -36,20 +58,54 @@
       position: sticky;
       top:0;
       padding: 5px;
+      img {
+        width: 15px;
+        margin-left: 5px;
+       &:hover {
+          animation: sort 0.7s ease-in-out ;
+          @keyframes sort {
+            0% { transform: translateY(0px); }
+            25% { transform: translateY(-1px); }
+            50% { transform: translateY(1px); }
+            75% { transform: translateY(-1px); }
+            100% { transform: translateY(0px); }
+          }
+        }
+      }
     }
     tbody {
 
       td {
         color: #8C8C8C;
         padding: 5px;
+        text-transform: capitalize;
       }
-      #name, #category {
+      #name {
         text-align: left;
       }
     }
     .gameList-action {
-      &:hover{
-      color: black;
+      position: relative;
+      
+      img {
+        width: 18px;
+        margin-left: 10px;
+        &:hover {
+          animation: shake 1s ease-in-out infinite;
+        }
+        @keyframes shake {
+          0% { transform: rotate(0); }
+          10% { transform: rotate(-10deg); }
+          20% { transform: rotate(10deg); }
+          30% { transform: rotate(-10deg); }
+          40% { transform: rotate(10deg); }
+          50% { transform: rotate(-10deg); }
+          60% { transform: rotate(10deg); }
+          70% { transform: rotate(-10deg); }
+          80% { transform: rotate(10deg); }
+          90% { transform: rotate(-10deg); }
+          100% { transform: rotate(0); }
+        }
       }
     }
     

@@ -1,4 +1,4 @@
-export const GetGamesApi = async (header) => {
+export const GamesApi = async (header) => {
   
   const url = "http://192.168.0.35:3001/games";
   const response = await fetch(url, header);
@@ -8,3 +8,4 @@ export const GetGamesApi = async (header) => {
     status: response.status
   }
 }
+
