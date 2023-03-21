@@ -1,5 +1,6 @@
 * {
   box-sizing:border-box;
+  font-family: 'Inter', sans-serif;
 }
 .topMenu-container {
   width: 100vw;
@@ -43,10 +44,11 @@
    
     .icons {
       position: absolute;
-      width: 25px;
+      width: 20px;
       top: 7px;
       &.isDark {
-        right: 230px;
+        right: 225px;
+        filter:opacity(60%);
       }
       &.notifications {
         right: 190px;
@@ -56,16 +58,16 @@
       position: absolute;
       width: 40px;
       border-radius: 50px;
-      right: 110px;
+      right: 115px;
 
     }
   }
   
   .profileInfo {
     position: absolute;
-    right: 40px;
-    top: 35px;
-    font-size: 9px;
+    right: 30px;
+    top: 37px;
+    font-size: 10px;
     &__name {
       font-weight: 600;
       color: #000;

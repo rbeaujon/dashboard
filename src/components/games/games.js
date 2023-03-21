@@ -3,8 +3,9 @@ import { LeftMenu } from "../menu/leftMenu";
 import { TopMenu } from "../menu/topMenu";
 import { Slider } from "./slider";
 import { GameList } from "./gameList";
-import { GetGamesApi } from "../../services/API/games.api";
+import { GamesApi } from "../../services/API/games.api";
 import Loader from "../../helpers/Loader/loader";
+import {GameModal} from './gameModal';
 
 import defaultImage  from '../../assets/games/default.png'
 
@@ -15,6 +16,8 @@ export const Games = () => {
   const[games, setGames] = useState([]);
   const[error, setError] = useState({});
   const[loading, setLoading] = useState(false);
+  const[isOpen, setIsOpen] = useState({}) 
+  const[isOk, setIsOk] = useState(false);
   const[selectedGame, setSelectedGame] = useState(defaultImage);
 
   const getGames = async () => {
@@ -30,7 +33,7 @@ export const Games = () => {
     };
   
     try {
-      let response = await GetGamesApi(header)
+      let response = await GamesApi(header)
   
       setLoading(false);
   
@@ -56,10 +59,11 @@ export const Games = () => {
 
   useEffect(() => {
     getGames();
-  },[])
+  },[isOk])
 
   return (
     <div>
+      {(Object.entries(isOpen)).length > 0 && <GameModal isOpen={isOpen} setIsOpen={setIsOpen} isOk={isOk} setIsOk={setIsOk}  /> }
       {loading && <Loader/>}
       <TopMenu title="Games"/>
       <LeftMenu/>
@@ -71,7 +75,9 @@ export const Games = () => {
       />
       <GameList
         games={games} 
+        setIsOpen ={setIsOpen}
       />
+      
     </div>
   )
   }
