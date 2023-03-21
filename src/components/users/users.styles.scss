@@ -1,0 +1,170 @@
+
+.users-container {
+  position: absolute;
+  top: 120px;
+  left: 22vw;
+  width: 75vw;
+  height: 80vh;
+  overflow-y: auto;
+}
+.users-search {
+  position: absolute;
+  right: 50px;
+  top: 10px;
+  border: none;
+  background-color: #c0c0c039;
+  color: #707070;
+  padding: 5px;
+  border-radius: 5px;
+  &::placeholder {
+    color:#70707093;
+  }
+}
+.users-searchIcon{
+  position: absolute;
+  right: 60px;
+  top: 15px;
+  width: 15px;
+
+}
+.usersList-add {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 18px;
+  &:hover {
+    animation: rotate 2s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+      filter:opacity(30%)
+    }
+    100% {
+      transform: scale(1) ;
+    }
+  }
+}
+.user-table {
+    table {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      margin-top: 50px;
+      height: 2%;
+      th {
+        color: #818181;
+        position: sticky;
+        top:0;
+        padding: 5px;
+        font-size: 14px;
+        img {
+          width: 15px;
+          margin-left: 5px;
+         &:hover {
+            animation: sort 0.7s ease-in-out ;
+            @keyframes sort {
+              0% { transform: translateY(0px); }
+              25% { transform: translateY(-1px); }
+              50% { transform: translateY(1px); }
+              75% { transform: translateY(-1px); }
+              100% { transform: translateY(0px); }
+            }
+          }
+        }
+      }
+      tbody {
+        td {
+          color: #8C8C8C;
+          font-size: 12px;
+          padding: 5px;
+          text-transform: capitalize;
+          .profile-pic-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            img {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 50px;
+              border-radius: 50px;
+            }
+            .img-info {
+              position: absolute;
+              bottom: 0;
+              right:0;
+              color: white;
+              border-radius: 5px;
+              width: 40px;
+              height: 15px;
+              font-size: 10px;
+              font-weight: 500;
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              &.admin {
+                background-color: #0994E2;
+              }
+              &.user {
+                background-color: #BD96FC;
+              }
+              &.ux-ui {
+                background-color: #FC96F8;
+              }
+              &.dev {
+                background-color: #8F8F8F;
+              }
+            }
+          }
+        }
+        #pic {
+          position: relative;
+          width: 60px;
+          height: 60px;
+          .profile-pic-main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+          }
+        }
+        #name {
+          text-align: left;
+        }
+        #email {
+          text-transform: lowercase;
+        }
+      }
+    }
+    .users-action {
+      position: relative;
+      
+      img {
+        width: 18px;
+        margin-left: 10px;
+        &:hover {
+          animation: shake 1s ease-in-out infinite;
+        }
+        @keyframes shake {
+          0% { transform: rotate(0); }
+          10% { transform: rotate(-10deg); }
+          20% { transform: rotate(10deg); }
+          30% { transform: rotate(-10deg); }
+          40% { transform: rotate(10deg); }
+          50% { transform: rotate(-10deg); }
+          60% { transform: rotate(10deg); }
+          70% { transform: rotate(-10deg); }
+          80% { transform: rotate(10deg); }
+          90% { transform: rotate(-10deg); }
+          100% { transform: rotate(0); }
+        }
+      }
+    }
+
+  }

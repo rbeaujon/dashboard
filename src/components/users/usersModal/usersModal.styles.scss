@@ -1,0 +1,277 @@
+.usersModal-overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top:0;
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.802);
+}
+.usersModal-frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  z-index: 9999;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  font-family: 'Inter', sans-serif;
+
+  &.add, &.edit {
+    height: 325px;
+  }
+  &.delete {
+    height: 250px;
+  }
+}
+.usersModal-add, .usersModal-edit  {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  
+  .edit-pic-container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    img {
+      position: absolute;
+      top: 12%;
+      left: 85%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      border-radius: 50px;
+    }
+    .edit-imgInfo {
+      position: absolute;
+      top: 20%;
+      left: 90%;
+      transform: translate(-50%, -50%);
+      font-size: 10px;
+      border-radius: 5px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      color: white;;
+      padding: 2px;
+      &.admin {
+        background-color: #0994E2;
+      }
+      &.user {
+        background-color: #BD96FC;
+      }
+      &.ux-ui {
+        background-color: #FC96F8;
+      }
+      &.dev {
+        background-color: #8F8F8F;
+      }
+    }
+
+  }
+  
+  .form {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    &.edit {
+      left: 45%;
+      top: 45%;
+    }
+    .form-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5px;
+  
+      input, select {
+        width: 180px;
+        font-size: 14px;
+        border: 0.7px solid rgb(169, 168, 168);
+        border-radius: 5px;
+        color: #515151;
+        font-size: 12px;
+        font-weight: 400;
+        font-family: 'Inter', sans-serif;
+        text-transform: capitalize;
+      }
+    }
+    .error-empty {
+      color: red;
+      input, select{
+        width: 180px;
+        border-radius: 5px;
+        border: 0.7px solid red;
+        margin-left: 15px;
+      }
+      
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+ 
+}
+.usersModal-delete {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  .usersModal-infoDelete{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 20px;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-align: justify;
+    font-weight: 500;
+    .user-toDelete {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      align-content: space-around;
+      position: absolute;
+      left: 50%;
+      top: 80%;
+      transform: translate(-50%, 0%);
+      font-size: 30px;
+      font-weight: 400;
+      text-transform: capitalize;
+      align-items: center;
+      #user-toDeleteName {
+        position: relative;
+        width: 50%;
+        height: 100px;
+        margin-left: 20px;
+      }
+      .profile-pic-main {
+        position: absolute;
+        left: 75%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        .profile-pic-container {
+      
+          position: relative;
+          img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 110px;
+            border-radius: 50px;
+          }
+          .img-info {
+            position: absolute;
+            transform: translate(30%,130%);
+            color: white;
+            border-radius: 5px;
+            width: 50px;
+            height: 25px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            &.admin {
+              background-color: #0994E2;
+            }
+            &.user {
+              background-color: #BD96FC;
+            }
+            &.ux-ui {
+              background-color: #FC96F8;
+            }
+            &.dev {
+              background-color: #8F8F8F;
+            }
+          }
+        }
+      }
+    } 
+  }
+}
+
+.userError-message {
+  position: absolute;
+  bottom: 45px;
+  color: red;
+  padding: 0 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  animation: showMessages 5s ease-in-out forwards;
+}
+.user-isOk-message {
+  position: absolute;
+  bottom: 40px;
+  color: rgb(16, 149, 20);
+  padding: 0 40px;
+  text-align: center;
+  width: 100%;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  animation: showMessages 5s ease-in-out forwards;
+  div { 
+    text-align: right;
+    label{
+      font-size: 10px;
+      font-weight: 400;
+      text-transform: lowercase;
+    }
+
+  }
+}
+.buttons {
+    position:absolute;
+    display:inline-flex;
+    width: 300px;
+    bottom: 0;
+    left: 0;
+    input {
+      position: absolute;
+      width: 120px;
+      padding: 10px;
+      bottom: 0px;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      border: none;
+      box-shadow: 0 0 2px 0.1px rgba(0, 0, 0, 0.200);
+      &:hover {
+        box-shadow: 0 0 4px 0.5px rgba(0, 0, 0, 0.400);
+        color: white;
+      }
+    }
+    #button-cancel {
+      left: 0;
+      border-radius: 0 5px 0 5px;
+      background-color: rgb(216, 215, 215);
+      &:hover {
+        background-color: rgb(192, 190, 190);
+      }
+    }
+    #button-submit {
+      right: 0;
+      border-radius:  5px 0  5px 0;
+      background-color: rgb(249, 175, 28);
+    }
+}
+@keyframes showMessages {
+   0% {opacity: 0;}
+  25% {opacity: 1;}
+  75% {opacity: 1;}
+  100% {opacity: 0;}
+}

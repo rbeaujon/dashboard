@@ -399,7 +399,7 @@ export const GameModal = (props) => {
         {isOpen.edit &&
         <div className="gamesModal-edit">
           <div className="form">
-            <div className={`${error.empty.includes('name') ? 'error-empty' : '' }`}>
+            <div className={`form-div ${error.empty.includes('name') ? 'error-empty' : '' }`}>
      
               <input 
                 type="text" 
@@ -411,7 +411,7 @@ export const GameModal = (props) => {
               />
               <span className="error-empty">{`${ error.empty.includes('name') ? '*' : ''}`}</span>
             </div>
-            <div className={`${error.empty.includes('category') ? 'error-empty' : '' }`}>
+            <div className={`form-div ${error.empty.includes('category') ? 'error-empty' : '' }`}>
          
               <select
               onChange={(e) => setToEdit({...toEdit, category: e.target.value})}
@@ -431,7 +431,7 @@ export const GameModal = (props) => {
               </select>
               <span className="error-empty">{`${ error.empty.includes('category') ? '*' : ''}`}</span>
             </div>
-            <div className={`${error.empty.includes('date') ? 'error-empty' : '' }`}>
+            <div className={`form-div ${error.empty.includes('date') ? 'error-empty' : '' }`}>
       
               <input 
                 type="text" 
@@ -444,7 +444,7 @@ export const GameModal = (props) => {
               <span className="error-empty">{`${ error.empty.includes('date') ? '*' : ''}`}</span>
 
             </div>
-            <div className={`${error.empty.includes('range') ? 'error-empty' : '' }`}>
+            <div className={`form-div ${error.empty.includes('range') ? 'error-empty' : '' }`}>
       
               <input 
                 type="text" 
@@ -457,7 +457,7 @@ export const GameModal = (props) => {
               <span className="error-empty">{`${ error.empty.includes('range') ? '*' : ''}`}</span>
 
             </div>
-            <div className={`${error.empty.includes('image') ? 'error-empty' : '' }`}>
+            <div className={`form-div ${error.empty.includes('image') ? 'error-empty' : '' }`}>
          
              <textarea
               type="text" 
