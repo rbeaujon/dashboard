@@ -4,20 +4,20 @@ This repository is an admin dashboard for a gaming platform.
 The design was made using material design and is available on Figma.
 Figma design URL: [https://tinyurl.com/rbeaujon].
 It allows managing a games list and users, giving to the admin the possibility to filter the displayed data in the tables sorting by range, date, categories, etc.
-Additionally, the admin can have the ability to delete, edit or create a new user or game.
+Additionally, the admin has the ability to delete, edit or create a new user or game.
 
-The app includes error handling and load indicators to improve the UX
+The app includes error handling and load indicators to improve the UX.
 
 This is an assignment for Front-End Developer, however, I preferred to create my own backend using NodeJS with MySQL.
 This one also handles the errors, validations, and reports by console and JSON for all the status codes or information available in the request.  
 Additionally, a CORS control was added because it is required by the hosting server for this app.
 
-Automated tests were covered also in the games and users modules.
+Unit tests were covered also in the games and users modules.
 
 ## Technical details
 
 The Front-End was developed using REACTJS, JEST and SASS.
-The Back-End was made on NodeJS using the ExpressJS and MySQL.
+The Back-End was made on NodeJS using ExpressJS and MySQL.
 
 The Back-End and Front-End have their own dependencies package and runners under NPM.
 
