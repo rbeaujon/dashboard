@@ -176,6 +176,26 @@
       }
     }
 }
+.Userserror-message {
+  position: absolute;
+  top: 500%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  color: red;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  // animation: showMessages 5s ease-in-out forwards;
+  z-index: 200;
+  
+  @keyframes showMessages {
+    0% {opacity: 0;}
+   100% {opacity: 1;}
+ }
+}
 }
 
 
@@ -217,8 +237,13 @@
         }
       }
     }
-
+  .Userserror-message {
+    top: 500%;
+    left:50%;
+    font-size: 12px;
   }
+  }
+
 }
 
 /* Tablet */

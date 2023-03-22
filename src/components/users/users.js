@@ -108,8 +108,9 @@ export const Users = () => {
       <TopMenu title="Users"/>
       <LeftMenu/>
       {loading && <Loader/>}
+      
       {(Object.entries(isOpen)).length > 0 && <UsersModal isOpen={isOpen} setIsOpen={setIsOpen} isOk={isOk} setIsOk={setIsOk}  /> }
-      <img src={add} className="usersList-add" onClick={() => setIsOpen({add: true})}/> 
+      <img src={add} alt="add" className="usersList-add" onClick={() => setIsOpen({add: true})}/> 
       <input 
             type="text" 
             className="users-search" 
@@ -119,8 +120,9 @@ export const Users = () => {
       <img src={searchIcon} className="users-searchIcon" alt="search"/>
       <div className="users-main">
         <div className="users-container">
-
+       
         <div className="user-table">
+       
             <table>
               <thead>
                 <tr>
@@ -164,8 +166,8 @@ export const Users = () => {
                       <td>{user.address}</td>
                       <td>{user.status}</td>
                       <td className='users-action'>
-                        <img src={edit} onClick={() => setIsOpen({edit: true, data: user})} />
-                        <img src={trash} onClick={() => setIsOpen({delete: true, data: user})} />
+                        <img src={edit} alt="edit"  onClick={() => setIsOpen({edit: true, data: user})} />
+                        <img src={trash} alt="trash" onClick={() => setIsOpen({delete: true, data: user})} />
                     
                       </td>   
                     </tr>
@@ -174,8 +176,9 @@ export const Users = () => {
                 })}
                 
               </tbody>
-
+             
             </table>
+            {error.message && <div className={`${error.message ? 'Userserror-message' : '' }`}>{error.message}</div>}
         </div>
         </div>
       </div>

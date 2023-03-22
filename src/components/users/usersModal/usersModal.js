@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
-import { checkUrlImage } from "../../../helpers/checkUrlImage";
 import Loader from "../../../helpers/Loader/loader";
 import { UsersApi } from "../../../services/API/users.api";
 
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import './usersModal.styles.scss';
