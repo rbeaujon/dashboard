@@ -62,7 +62,9 @@ export const Slider = (props) => {
           e.target.onerror = null;
           e.target.src = defaultImage; 
         }}
-      /> }
+      /> 
+      }
+       
       </div>
     </div>
 

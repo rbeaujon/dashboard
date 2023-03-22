@@ -90,17 +90,17 @@
 
 @media only screen and (min-width: 321px) and (max-width: 767px) {
   .topMenu-container {
+    height: 70px;
     opacity: 1;
     transition: 0.5s opacity ease-in-out;
    
-
     &.activeMenu {
       opacity: 0;
     }
     .hamburger {
       display: block;
       position: absolute;
-      top: 35px;
+      top: 20px;
       left: 20px;
       background-color: transparent;
       span {
@@ -108,15 +108,19 @@
       }
     }
     .title {
-      font-size: 24px;
+      font-size: 20px;
       position: relative;
       left: 15vw;
-      top: 35px;
+      top: 20px;
+      font-weight: 500;
       color: #555555;
     }
     .image-container {
+      width: 100%;
+      top: 15px;
       .icons {
-        width: 25px;
+        top: 10px;
+        width: 16px;
         &.isDark {
           right: 175px;
         }
@@ -130,6 +134,7 @@
     }
     .profileInfo {
       right: 10px;
+      top: 25px
     }
   }
 }

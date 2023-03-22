@@ -316,7 +316,7 @@ export const UsersModal = (props) => {
                 <input
                   type="button"
                   id="button-submit"
-                  value="Accept"
+                  value="Add"
                   onClick={() => {
                     handleCreate()
                   }}

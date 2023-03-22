@@ -109,7 +109,6 @@ export const Users = () => {
       <LeftMenu/>
       {loading && <Loader/>}
       {(Object.entries(isOpen)).length > 0 && <UsersModal isOpen={isOpen} setIsOpen={setIsOpen} isOk={isOk} setIsOk={setIsOk}  /> }
-      <div className="users-container">
       <img src={add} className="usersList-add" onClick={() => setIsOpen({add: true})}/> 
       <input 
             type="text" 
@@ -117,38 +116,40 @@ export const Users = () => {
             placeholder="Search ID or Name"
             onChange={(e) => setSearch( e.target.value)}
           />
-          <img src={searchIcon} className="users-searchIcon" alt="search"/>
-       <div className="user-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Pic</th>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email
-                <img src={sort} alt='sort'
-                  onClick={() => {
-                    setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
-                    sortData("email")}}
-                  /> 
-                </th>
-                <th>Address</th>
-                <th>Status
-                <img src={sort} alt='sort'
-                  onClick={() => {
-                    setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
-                    sortData("status")}}
-                  /> 
-                </th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>           
-              {sortedUsers && sortedUsers.map(user => {
-                 return (
-                  <tr key={user.id}>
-                    <td id="pic">
-                      <div className="profile-pic-main" >
+      <img src={searchIcon} className="users-searchIcon" alt="search"/>
+      <div className="users-main">
+        <div className="users-container">
+
+        <div className="user-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Pic</th>
+                  <th>Id</th>
+                  <th>Name</th>
+                  <th>Email
+                  <img src={sort} alt='sort'
+                    onClick={() => {
+                      setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
+                      sortData("email")}}
+                    /> 
+                  </th>
+                  <th>Address</th>
+                  <th>Status
+                  <img src={sort} alt='sort'
+                    onClick={() => {
+                      setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
+                      sortData("status")}}
+                    /> 
+                  </th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>           
+                {sortedUsers && sortedUsers.map(user => {
+                  return (
+                    <tr key={user.id}>
+                      <td className="profile-pic-main">
                         <div className="profile-pic-container">
                           <img
                             src={user.pic}
@@ -156,27 +157,27 @@ export const Users = () => {
                           />
                           <div className={`img-info ${user.level === 'ux/ui' ? 'ux-ui' : user.level}`}>{user.level}</div>
                         </div>
-                      </div>
-                    </td>
-                    <td>{user.id}</td>
-                    <td>{user.name}</td>
-                    <td id="email">{user.email}</td>
-                    <td>{user.address}</td>
-                    <td>{user.status}</td>
-                    <td className='users-action '>
-                      <img src={edit} onClick={() => setIsOpen({edit: true, data: user})} />
-                      <img src={trash} onClick={() => setIsOpen({delete: true, data: user})} />
-                  
-                    </td>   
-                  </tr>
+                      </td>
+                      <td>{user.id}</td>
+                      <td>{user.name}</td>
+                      <td id="email">{user.email}</td>
+                      <td>{user.address}</td>
+                      <td>{user.status}</td>
+                      <td className='users-action'>
+                        <img src={edit} onClick={() => setIsOpen({edit: true, data: user})} />
+                        <img src={trash} onClick={() => setIsOpen({delete: true, data: user})} />
                     
-                 )
-              })}
-              
-            </tbody>
+                      </td>   
+                    </tr>
+                      
+                  )
+                })}
+                
+              </tbody>
 
-          </table>
-       </div>
+            </table>
+        </div>
+        </div>
       </div>
     </div>
   )
