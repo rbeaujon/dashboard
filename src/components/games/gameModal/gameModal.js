@@ -200,47 +200,52 @@ export const GameModal = (props) => {
   }
 
   const handleDate = () => {
-    const dateFormated = toCreate.date.toString().split(' ');
-    let month 
-    switch (dateFormated[1]) {
-      case "Jan":
-        month = '01'
-      break;
-      case "Feb":
-        month = '02'
-      break;
-      case "Mar":
-        month = '03'
-      break;
-      case "Apr":
-        month = '04'
-      break;
-      case "May":
-        month = '05'
-      break;  
-      case "Jun":
-        month = '05'
-      break;
-      case "Jul":
-        month = '06'
-      break;
-      case "Aug":
-        month = '07'
-      break;
-      case "Sep":
-        month = '08'
-      break;
-      case "Oct":
-        month = '09'
-      break;
-      case "Nov":
-        month = '10'
-      break;   
-      case "Dec":
-        month = '12'
-      break;
-    }
-    return `${dateFormated[2]}/${month}/${dateFormated[3]}`
+    // const dateFormated = toCreate.date.toString().split(' ');
+    // dateFormated[1]) {
+    //   case "Jan":
+    //     month = '01'
+    //   break;
+    //   case "Feb":
+    //     month = '02'
+    //   break;
+    //   case "Mar":
+    //     month = '03'
+    //   break;
+    //   case "Apr":
+    //     month = '04'
+    //   break;
+    //   case "May":
+    //     month = '05'
+    //   break;  
+    //   case "Jun":
+    //     month = '05'
+    //   break;
+    //   case "Jul":
+    //     month = '06'
+    //   break;
+    //   case "Aug":
+    //     month = '07'
+    //   break;
+    //   case "Sep":
+    //     month = '08'
+    //   break;
+    //   case "Oct":
+    //     month = '09'
+    //   break;
+    //   case "Nov":
+    //     month = '10'
+    //   break;   
+    //   case "Dec":
+    //     month = '12'
+    //   break;
+    // }
+    // return `${dateFormated[2]}/${month}/${dateFormated[3]}`
+    
+    const dateStr = toCreate.date.toString().split(' ');
+    const dateObj = new Date(toCreate.date.toString());
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    return `${dateStr[2]}/${month}/${dateStr[3]}`
+
   }
   useEffect(() => {
     let timer
