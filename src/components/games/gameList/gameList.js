@@ -57,6 +57,8 @@ export const GameList = (props) => {
   useEffect(() => {
     sortData()
   },[search])
+
+  
   return (
     <div className="gameList-main">
      
