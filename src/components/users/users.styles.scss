@@ -1,37 +1,32 @@
 
-.users-container {
-  position: absolute;
-  top: 120px;
-  left: 22vw;
-  width: 75vw;
-  height: 80vh;
-  overflow-y: auto;
-}
 .users-search {
   position: absolute;
-  right: 50px;
-  top: 10px;
+  right: 90px;
+  top: 115px;
   border: none;
   background-color: #c0c0c039;
   color: #707070;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 5px; 
+  z-index: 1;
+
   &::placeholder {
     color:#70707093;
   }
 }
 .users-searchIcon{
   position: absolute;
-  right: 60px;
-  top: 15px;
+  right: 100px;
+  top: 120px;
   width: 15px;
-
+  z-index: 1;
 }
 .usersList-add {
   position: absolute;
-  right: 15px;
-  top: 15px;
+  right: 60px;
+  top: 120px;
   width: 18px;
+  z-index: 1;
   &:hover {
     animation: rotate 2s linear infinite;
   }
@@ -49,19 +44,33 @@
     }
   }
 }
-.user-table {
+.users-main {
+  position: absolute;
+  top: 150px;
+  left: 21vw;
+  width: 75vw;
+  height: 75vh;
+  overflow-y: auto;
+}
+.users-container {
+  position: relative;
+  .user-table {
     table {
-      position: absolute;
+      position: relative;
       width: 100%;
       text-align: center;
-      margin-top: 50px;
-      height: 2%;
+      border-collapse: collapse;
+      thead {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
       th {
         color: #818181;
-        position: sticky;
-        top:0;
         padding: 5px;
         font-size: 14px;
+        white-space: nowrap;
+        
         img {
           width: 15px;
           margin-left: 5px;
@@ -83,56 +92,7 @@
           font-size: 12px;
           padding: 5px;
           text-transform: capitalize;
-          .profile-pic-container {
-            position: relative;
-            width: 60px;
-            height: 60px;
-            img {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              width: 50px;
-              border-radius: 50px;
-            }
-            .img-info {
-              position: absolute;
-              bottom: 0;
-              right:0;
-              color: white;
-              border-radius: 5px;
-              width: 40px;
-              height: 15px;
-              font-size: 10px;
-              font-weight: 500;
-              display: flex;
-              justify-content: space-around;
-              align-items: center;
-              &.admin {
-                background-color: #0994E2;
-              }
-              &.user {
-                background-color: #BD96FC;
-              }
-              &.ux-ui {
-                background-color: #FC96F8;
-              }
-              &.dev {
-                background-color: #8F8F8F;
-              }
-            }
-          }
-        }
-        #pic {
-          position: relative;
-          width: 60px;
-          height: 60px;
-          .profile-pic-main {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
-          }
+          white-space: nowrap;
         }
         #name {
           text-align: left;
@@ -140,14 +100,63 @@
         #email {
           text-transform: lowercase;
         }
+        .profile-pic-main {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          
+        }
+        .profile-pic-container {
+          width: 60px;
+          height: 60px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+
+          
+          img {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            width: 60px;
+          }
+          .img-info {
+            color: white;
+            left: 50%;
+            bottom: 0;
+            border-radius: 5px;
+            width: 40px;
+            height: 17px;
+            font-size: 10px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: absolute;
+            &.admin {
+              background-color: #0994E2;
+            }
+            &.user {
+              background-color: #BD96FC;
+            }
+            &.ux-ui {
+              background-color: #FC96F8;
+            }
+            &.dev {
+              background-color: #8F8F8F;
+            }
+          }
+        }
       }
     }
     .users-action {
-      position: relative;
-      
+
       img {
         width: 18px;
-        margin-left: 10px;
+        margin-left: 5px;
         &:hover {
           animation: shake 1s ease-in-out infinite;
         }
@@ -166,5 +175,58 @@
         }
       }
     }
+}
+}
+
+
+  /*** RESPONSIVE DESIGN ***/
+
+/* Mobiles */
+@media only screen and (max-width: 320px) {
+
+}
+
+@media only screen and (min-width: 321px) and (max-width: 767px) {
+  .users-search {
+    width: 170px;
+    top: 80px;
+    right:60px
+  }
+  .users-searchIcon {
+    top: 85px;
+    right:70px
+  }
+  .usersList-add {
+    right: 20px;
+    top: 85px;
+  }
+  .users-main {
+    left: 0px;
+    width: 100vw;
+  }
+  .user-table {
+    table {
+      font-size: 0.8rem;
+      th, td {
+        flex-basis: 100%;
+      }
+      th {
+        font-size: 12px;
+        img {
+          width: 12px;
+        }
+      }
+    }
 
   }
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Laptop */
+@media only screen and (min-width: 992px) {
+
+}

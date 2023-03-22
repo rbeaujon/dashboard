@@ -2,7 +2,7 @@
   box-sizing:border-box;
 }
 
-.leftMenu {
+.leftMenu  {
   width: 20vw;
   height: 100vh;
   background-color: white;
@@ -79,18 +79,26 @@
 
 @media only screen and (min-width: 321px) and (max-width: 767px) {
 
-  .leftMenu {
+  .leftMenu  {
     transition: width 0.5s ease-in-out;
     width: 0;
+    left: 0;
     border-right: 0.5px solid rgb(114, 113, 113);
+    z-index: -1;
     
     .container {
       opacity: 0;
     }
-
-    &.activeMenu {
+  
+  &.enable {
+      &.leftMenu {
+        display: block;
+      }
       display: block;
       width: 100vw;
+      transition: width 0.5s ease-in-out forwards;
+      border-right: 0.5px solid rgb(114, 113, 113);
+      z-index: 100;
       
       .container {
         opacity: 1;
@@ -136,6 +144,7 @@
         }
 
       }
+    
     }
   }
 }

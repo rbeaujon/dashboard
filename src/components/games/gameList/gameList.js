@@ -60,50 +60,60 @@ export const GameList = (props) => {
 
   
   return (
-    <div className="gameList-main">
-     
-        <div>
-          <img src={add} className="gameList-add" onClick={() => setIsOpen({add: true})}/> 
-          <input 
-            type="text" 
-            className="gameList-search" 
-            placeholder="Search ID or Name"
-            onChange={(e) => setSearch( e.target.value)}
-          />
-          <img src={searchIcon} className="gameList-searchIcon" alt="search"/>
+    <>
+      <img src={add} className="gameList-add" onClick={() => setIsOpen({add: true})}/> 
+      <input 
+        type="text" 
+        className="gameList-search" 
+        placeholder="Search ID or Name"
+        onChange={(e) => setSearch( e.target.value)}
+      />
+      <img src={searchIcon} className="gameList-searchIcon" alt="search"/>
+      <div className="gameList-main">
+        <div className="gameList-container">
           <table>
-            <thead>
-              <tr>
-                <th>No</th>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Category  
-                  <img src={sort} alt='sort'
-                  onClick={() => {
-                    setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
-                    sortData("category")}}
-                  /> 
-                </th>
-                <th>Creation Date  
-                  <img src={sort} alt='sort'
-                   onClick={() => {
-                    setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
-                    sortData("creation")}}
-                  />
-                </th>
-                <th>Range  
-                  <img src={sort} alt='sort'
-                   onClick={() => {
-                    setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
-                    sortData("ranges")}}
-                  />
-                </th>
-                <th>Status</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>           
-              {sortedGames && sortedGames.map(game => {
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>
+                    <div className='sortCategory'>
+                      Category  
+                      <img src={sort} alt='sort'
+                        onClick={() => {
+                        setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
+                        sortData("category")}}
+                      />
+                    </div> 
+                  </th>
+                  <th>
+                    <div className='sortDate'>
+                      Creation Date  
+                      <img src={sort} alt='sort'
+                        onClick={() => {
+                        setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
+                        sortData("creation")}}
+                      />
+                    </div>
+                  </th>
+                  <th>
+                    <div className='sortRange'>
+                      Range
+                      <img src={sort} alt='sort'
+                        onClick={() => {
+                        setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
+                        sortData("ranges")}}
+                      />
+                      </div> 
+
+                  </th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>           
+                {sortedGames && sortedGames.map(game => {
                 return (
                   <tr key={game.id}>
                     <td>{game.id}</td>
@@ -113,17 +123,17 @@ export const GameList = (props) => {
                     <td>{game.creation}</td>
                     <td>{game.ranges}</td>
                     <td>{game.status}</td>
-                    <td className='gameList-action '>
+                    <td className='gameList-action' >
                       <img src={edit} onClick={() => setIsOpen({edit: true, data: game})} />
-                      <img src={trash} onClick={() => setIsOpen({delete: true, data: game})} />
-                  
+                      <img src={trash} onClick={() => setIsOpen({delete: true, data: game})} />  
                     </td>              
                   </tr>
                 )
               })}  
-            </tbody>
+              </tbody>
           </table>
         </div>
-    </div>
+      </div>
+  </>
   )
-  }
+}

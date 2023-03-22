@@ -6,7 +6,6 @@
   display: flex;
   justify-content: space-between;
 }
-
 .slider-container, .game-selected {
   position: relative;
   display: flex;
@@ -103,4 +102,78 @@
     border: 1px solid rgb(184, 183, 183);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.466);
   }
+  
+}
+
+/*** RESPONSIVE DESIGN ***/
+
+/* Mobiles */
+@media only screen and (max-width: 320px) {
+
+}
+
+@media only screen and (min-width: 321px) and (max-width: 767px) {
+
+  .slider-container, .game-selected {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    
+  }
+  .slider-container {
+    position: absolute;
+    top: 400px;
+    left: 50%; 
+    transform: translate(-50%,-50%);
+
+    .slider-grid {
+      width: 90vw; 
+      height: 27vh;
+      
+      .slider {
+        padding: 0; 
+        .image-container {
+          width: 80px; 
+          height: 90px; 
+          .image-frame {
+            div {
+              font-size: 0.7rem;
+            }
+          }
+        }
+      }
+    }
+    .prev {
+      top: 42%; 
+      left: 0;
+    }
+    .next {    
+      top: 42%;    
+      right: 0;
+    }
+  }
+  .game-selected {
+    position: absolute;
+    top: 80px;
+    left:50%;
+    width: 100%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    img {
+      width: 340px;
+      height: 200px;
+    }
+  }
+  
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Laptop */
+@media only screen and (min-width: 992px) {
+
 }

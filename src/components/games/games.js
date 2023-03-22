@@ -20,6 +20,7 @@ export const Games = () => {
   const[isOk, setIsOk] = useState(false);
   const[selectedGame, setSelectedGame] = useState(defaultImage);
 
+
   const getGames = async () => {
 
     setLoading(true);

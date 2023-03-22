@@ -19,8 +19,8 @@ export const LeftMenu = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={`leftMenu ${activeMenu ? "activeMenu" : ''}`}>
-      <div className="container">
+    <div className={`leftMenu ${activeMenu ? "enable" : ''}`}>
+      <div className={`container `}>
         <div className="logo">
           <img src={logo} alt="logo" />
         </div>
