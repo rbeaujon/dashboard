@@ -50,16 +50,30 @@ The Back-End and Front-End have their own dependencies package and runners under
 ```Example: npm run start.
 ```
 
-#### Browser views
+### Browser View
 
-Front-End [http://localhost:3000]
+#### Hosted Version
+You can see the currently hosted version by following this link: http://yologroup.rbeaujon.com/
 
-Back-End API [http://localhost:3001]
+#### Development Version
+To see the development version, follow the instructions below:
 
-## API Endpoints
+##### Front-End
+Open the following link in your browser: http://localhost:3000
 
-Server URL : [http://localhost:3001]
+##### Back-End API
+To access the API, use the following URL: http://localhost:3001
+
+##### API Endpoints
+Below are the available endpoints in the API:
+
+Server URL: http://localhost:3001
+
+Games Endpoint: /games
+Users Endpoint: /users
+
 
 ## Out-of-scope
   
 * Create conceptual and communication diagrams to understand visually the application flow.
+* Display the selected image info in the Games module.
