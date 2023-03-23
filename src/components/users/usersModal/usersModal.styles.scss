@@ -1,3 +1,28 @@
+$isDark: #1d2d39;
+$bginputSelect: #2b353a;
+$font-light: #e8e8e8;
+$font-medium: #bdbaba;
+
+.isDark {
+  .usersModal-frame {
+    color: $font-light;
+    background-color: $isDark;
+  }
+  .usersModal-add, .usersModal-edit  {
+    .form {
+      .form-div {
+        input, select, textarea {
+           color: $font-light;
+           background-color: $bginputSelect;
+          &::placeholder {
+            color: $font-medium;
+          }
+        }    
+      }
+    }
+  }
+}
+
 .usersModal-overlay {
   position: absolute;
   width: 100vw;

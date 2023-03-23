@@ -1,3 +1,43 @@
+$isDark: #1d2d39;
+$font-light: #e8e8e8;
+$font-medium: #bdbaba;
+
+.isDark {
+  .gameList-search {
+    color: $font-light;
+    &::placeholder {
+      color: $font-medium;
+    }
+  }
+  .gameList-add {
+    filter: invert(100%);
+  }
+  .gameList-main {
+    background-color:  $isDark;
+    .gameList-container {
+      table {
+        th, .sortCategory, .sortDate, .sortRange {
+          color: $font-light;
+          background-color:  $isDark;
+          img {
+            filter: invert(100%);
+          }
+        }
+        td{
+          color: $font-medium;
+          background-color:  $isDark;
+        }
+        .gameList-action {
+          img {
+            filter: invert(100%);
+          }
+        }
+      }
+    }
+  }
+  
+}
+
 .gameList-search {
   position: absolute;
   right: 110px;
@@ -68,6 +108,7 @@
         img {
           width: 15px;
           margin-left: 5px;
+          background-color: transparent;
         &:hover {
             animation: sort 0.7s ease-in-out ;
             @keyframes sort {
@@ -133,7 +174,7 @@
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
-  background-color: white;
+  background-color: transparent
 }
 
 /*** RESPONSIVE DESIGN ***/

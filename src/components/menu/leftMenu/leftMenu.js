@@ -2,7 +2,7 @@ import React, { useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
 import './leftMenu.styles.scss';
-import {ActiveMenuContext} from '../../../context/context';
+import {ActiveMenuContext, IsDarkContext} from '../../../context/context';
 
 import logo from '../../../assets/icons/logo.png';
 import dashboard from '../../../assets/icons/dashboard.png';
@@ -16,10 +16,15 @@ import settings from '../../../assets/icons/settings.png';
 export const LeftMenu = () => {
 
   const {activeMenu, setActiveMenu} = useContext(ActiveMenuContext);
+  const {isDark, setIsDark } = useContext(IsDarkContext);
+
   const navigate = useNavigate();
 
   return (
-    <div className={`leftMenu ${activeMenu ? "enable" : ''}`}>
+    <div className={`leftMenu 
+      ${activeMenu ? "enable" : ''} 
+      ${isDark ? 'isDark' : 'isLight'}`
+      }>
       <div className={`container `}>
         <div className="logo">
           <img src={logo} alt="logo" />

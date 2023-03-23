@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import searchIcon from "../../../assets/icons/search.png"
 import add from "../../../assets/icons/add.png"
 import edit from "../../../assets/icons/edit.png"
@@ -6,6 +6,7 @@ import trash from "../../../assets/icons/trash.png"
 import sort from "../../../assets/icons/sort.png"
 
 import './gameList.styles.scss'
+import { IsDarkContext } from '../../../context/context';
 
 export const GameList = (props) => {
 
@@ -13,6 +14,7 @@ export const GameList = (props) => {
   const [sortedGames, setSortedGames] = useState(games);
   const [sortedOrder, setSortedOrder] = useState('ASC');
   const[search, setSearch] = useState('');
+  const {isDark } = useContext(IsDarkContext);
 
   const sortData = (sortBy) => {
     let sorted = [...sortedGames];
@@ -60,7 +62,7 @@ export const GameList = (props) => {
 
   
   return (
-    <>
+    <div className={`${isDark ? 'isDark' : 'isLight'}`}>
       <img src={add} className="gameList-add" onClick={() => setIsOpen({add: true})}/> 
       <input 
         type="text" 
@@ -136,6 +138,6 @@ export const GameList = (props) => {
         </div>
         {Object.values(games).length === 0 && <div className={`${Object.values(games).length === 0  ? 'GameListError-message' : '' }`}>No games to show at this moment</div>}
       </div>
-  </>
+  </div>
   )
 }

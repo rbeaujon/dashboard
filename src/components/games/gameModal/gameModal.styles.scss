@@ -1,3 +1,33 @@
+$isDark: #1d2d39;
+$bginputSelect: #2b353a;
+$font-light: #e8e8e8;
+$font-medium: #bdbaba;
+
+.isDark {
+  .gamesModal-frame {
+    background-color: $isDark;
+  }
+  .gamesModal-add, .gamesModal-edit  {
+    .form {
+      .form-div {
+        input, select, textarea {
+           color: $font-light;
+           background-color: $bginputSelect;
+          &::placeholder {
+            color: $font-medium;
+          }
+        }    
+      }
+    }
+  }
+  .gamesModal-delete {
+    color: $font-light;
+    .game-toDelete {
+      color: $font-medium;
+    }
+  }
+}
+
 .gamesModal-overlay {
   position: absolute;
   width: 100vw;

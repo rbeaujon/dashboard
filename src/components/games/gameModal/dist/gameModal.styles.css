@@ -1,0 +1,243 @@
+.isDark .gamesModal-frame {
+  background-color: #1d2d39;
+}
+.isDark .gamesModal-add .form .form-div input, .isDark .gamesModal-add .form .form-div select, .isDark .gamesModal-add .form .form-div textarea, .isDark .gamesModal-edit .form .form-div input, .isDark .gamesModal-edit .form .form-div select, .isDark .gamesModal-edit .form .form-div textarea {
+  color: #e8e8e8;
+  background-color: #2b353a;
+}
+.isDark .gamesModal-add .form .form-div input::placeholder, .isDark .gamesModal-add .form .form-div select::placeholder, .isDark .gamesModal-add .form .form-div textarea::placeholder, .isDark .gamesModal-edit .form .form-div input::placeholder, .isDark .gamesModal-edit .form .form-div select::placeholder, .isDark .gamesModal-edit .form .form-div textarea::placeholder {
+  color: #bdbaba;
+}
+.isDark .gamesModal-delete {
+  color: #e8e8e8;
+}
+.isDark .gamesModal-delete .game-toDelete {
+  color: #bdbaba;
+}
+
+.gamesModal-overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.802);
+}
+
+.gamesModal-frame {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  z-index: 9999;
+  border-radius: 5px;
+  background-color: white;
+  font-family: "Inter", sans-serif;
+}
+.gamesModal-frame.add, .gamesModal-frame.edit {
+  height: 325px;
+}
+.gamesModal-frame.delete {
+  height: 250px;
+}
+
+.gamesModal-add, .gamesModal-edit {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.gamesModal-add .form, .gamesModal-edit .form {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+}
+.gamesModal-add .form .form-div, .gamesModal-edit .form .form-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+.gamesModal-add .form .form-div input, .gamesModal-add .form .form-div select, .gamesModal-edit .form .form-div input, .gamesModal-edit .form .form-div select {
+  width: 220px;
+  font-size: 14px;
+  border: 0.7px solid #a9a8a8;
+  border-radius: 5px;
+  color: #515151;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+  text-transform: capitalize;
+}
+.gamesModal-add .form .form-div textarea, .gamesModal-edit .form .form-div textarea {
+  width: 220px;
+  height: 60px;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: "Inter", sans-serif;
+}
+.gamesModal-add .form .error-empty, .gamesModal-edit .form .error-empty {
+  color: red;
+}
+.gamesModal-add .form .error-empty input, .gamesModal-add .form .error-empty select, .gamesModal-edit .form .error-empty input, .gamesModal-edit .form .error-empty select {
+  width: 220px;
+  border-radius: 5px;
+  border: 0.7px solid red;
+  margin-left: 15px;
+}
+.gamesModal-add .form .error-empty span, .gamesModal-edit .form .error-empty span {
+  margin-left: 5px;
+}
+
+.react-datepicker-wrapper {
+  width: auto;
+}
+
+.gamesModal-delete {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+.gamesModal-delete .info-delete {
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 20px;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  font-weight: 500;
+}
+.gamesModal-delete .info-delete .game-toDelete {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+  position: absolute;
+  left: 50%;
+  top: 80%;
+  transform: translate(-50%, 0%);
+  font-size: 18px;
+  text-transform: uppercase;
+}
+.gamesModal-delete .info-delete .game-toDelete div {
+  position: relative;
+  width: 120px;
+  max-width: 120px;
+  height: 100px;
+}
+.gamesModal-delete .info-delete .game-toDelete div img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  box-shadow: 0 0 5px #c0c0c0ae;
+  margin-left: 15px;
+}
+
+.error-message {
+  position: absolute;
+  bottom: 50px;
+  color: red;
+  padding: 0 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  text-transform: uppercase;
+  animation: showMessages 5s ease-in-out forwards;
+}
+
+.isOk-message {
+  position: absolute;
+  bottom: 50px;
+  color: #109514;
+  padding: 0 40px;
+  text-align: center;
+  width: 100%;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: "Inter", sans-serif;
+  text-transform: uppercase;
+  animation: showMessages 5s ease-in-out forwards;
+}
+.isOk-message div {
+  text-align: right;
+}
+.isOk-message div label {
+  font-size: 10px;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+.buttons {
+  position: absolute;
+  display: inline-flex;
+  width: 300px;
+  bottom: 0;
+  left: 0;
+}
+.buttons input {
+  position: absolute;
+  width: 120px;
+  padding: 10px;
+  bottom: 0px;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  box-shadow: 0 0 2px 0.1px rgba(0, 0, 0, 0.2);
+}
+.buttons input:hover {
+  box-shadow: 0 0 4px 0.5px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+.buttons #button-cancel {
+  left: 0;
+  border-radius: 0 5px 0 5px;
+  background-color: #d8d7d7;
+}
+.buttons #button-cancel:hover {
+  background-color: #c0bebe;
+}
+.buttons #button-submit {
+  right: 0;
+  border-radius: 5px 0 5px 0;
+  background-color: #f9af1c;
+}
+
+.react-datepicker-popper {
+  transform: translate3d(200px, -140px, 0px) !important;
+}
+
+.react-datepicker__triangle {
+  transform: translate3d(-5px, 235px, 0px) rotate(270deg) !important;
+}
+
+@keyframes showMessages {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

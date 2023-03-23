@@ -1,3 +1,30 @@
+.isDark .gameList-search {
+  color: #e8e8e8;
+}
+.isDark .gameList-search::placeholder {
+  color: #bdbaba;
+}
+.isDark .gameList-add {
+  filter: invert(100%);
+}
+.isDark .gameList-main {
+  background-color: #1d2d39;
+}
+.isDark .gameList-main .gameList-container table th, .isDark .gameList-main .gameList-container table .sortCategory, .isDark .gameList-main .gameList-container table .sortDate, .isDark .gameList-main .gameList-container table .sortRange {
+  color: #e8e8e8;
+  background-color: #1d2d39;
+}
+.isDark .gameList-main .gameList-container table th img, .isDark .gameList-main .gameList-container table .sortCategory img, .isDark .gameList-main .gameList-container table .sortDate img, .isDark .gameList-main .gameList-container table .sortRange img {
+  filter: invert(100%);
+}
+.isDark .gameList-main .gameList-container table td {
+  color: #bdbaba;
+  background-color: #1d2d39;
+}
+.isDark .gameList-main .gameList-container table .gameList-action img {
+  filter: invert(100%);
+}
+
 .gameList-search {
   position: absolute;
   right: 110px;
@@ -74,6 +101,7 @@
 .gameList-main .gameList-container table th img {
   width: 15px;
   margin-left: 5px;
+  background-color: transparent;
 }
 .gameList-main .gameList-container table th img:hover {
   animation: sort 0.7s ease-in-out;
@@ -165,7 +193,7 @@
   font-weight: 500;
   font-family: "Inter", sans-serif;
   text-transform: uppercase;
-  background-color: white;
+  background-color: transparent;
 }
 
 /*** RESPONSIVE DESIGN ***/

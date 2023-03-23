@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { checkUrlImage } from "../../../helpers/checkUrlImage";
 import Loader from "../../../helpers/Loader/loader";
 import { GamesApi } from "../../../services/API/games.api";
@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import './gameModal.styles.scss';
+import { IsDarkContext } from "../../../context/context";
 
 
 export const GameModal = (props) => {
@@ -25,6 +26,7 @@ export const GameModal = (props) => {
   const [error, setError] = useState({empty:[]});
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(5);
+  const {isDark} = useContext(IsDarkContext);
 
   const handleCreate = async () => {
     
@@ -219,7 +221,7 @@ export const GameModal = (props) => {
   }, [isOk, timeLeft]);
 
   return (
-    <div className="gamesModal-overlay">
+    <div className={`usersModal-overlay ${isDark && "isDark"}`}>
 
    
       {loading && <Loader/>}

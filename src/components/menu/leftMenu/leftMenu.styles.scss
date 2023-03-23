@@ -1,5 +1,29 @@
-* {
-  box-sizing:border-box;
+$isDark: #0d3d5b;
+
+.isDark {
+  &.leftMenu {
+    background-color: $isDark;
+    .logo {
+      img {
+        filter:invert(100%) brightness(100%) hue-rotate(190deg);
+      }
+    }
+    .icons {
+      background-color: $isDark;
+      div {
+        background-color: $isDark;
+        img {
+          background-color: transparent;
+          filter:invert(100%);
+        }
+        label {
+          background-color: transparent;
+          color: white;
+          filter: opacity(0.8);
+        }
+      }
+    }
+  }
 }
 
 .leftMenu  {
@@ -17,8 +41,10 @@
     position: absolute;
     top: 10px;
     left: 42px;
+    background-color: transparent;
     img {
       width: 80px;
+      background-color: transparent;
     }
   }
   .icons {
