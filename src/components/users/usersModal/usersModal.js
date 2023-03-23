@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Loader from "../../../helpers/Loader/loader";
 import { UsersApi } from "../../../services/API/users.api";
 
@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import './usersModal.styles.scss';
 import { verifyEmail } from "../../../helpers/verifyEmail";
+import { IsDarkContext } from "../../../context/context";
 
 
 export const UsersModal = (props) => {
@@ -24,6 +25,7 @@ export const UsersModal = (props) => {
   const [error, setError] = useState({empty:[]});
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(5);
+  const {isDark} = useContext(IsDarkContext);
 
   const handleCreate = async () => {
 
@@ -207,7 +209,7 @@ export const UsersModal = (props) => {
   }, [isOk, timeLeft]);
 
   return (
-    <div className="usersModal-overlay">
+    <div className={`usersModal-overlay ${isDark && "isDark"}`}>
 
       {loading && <Loader/>}
       <div className={`usersModal-frame ${isOpen.add ? 'add' : 

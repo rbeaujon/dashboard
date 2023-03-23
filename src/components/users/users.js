@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { LeftMenu } from "../menu/leftMenu";
 import { TopMenu } from "../menu/topMenu";
 import { UsersApi } from "../../services/API/users.api";
@@ -12,8 +12,11 @@ import searchIcon from "../../assets/icons/search.png"
 
 import './users.styles.scss';
 import { UsersModal } from "./usersModal";
+import { IsDarkContext } from "../../context/context";
 
 export const Users = () => {
+
+  const {isDark} = useContext(IsDarkContext);
 
   const[users, setUsers] = useState([])
   const[search, setSearch] = useState('');
@@ -104,7 +107,9 @@ export const Users = () => {
   },[users, search])
 
   return (
-    <div className="users">
+    <div className={`users
+    ${isDark ? 'isDark' : 'isLight'}`
+    }>
       <TopMenu title="Users"/>
       <LeftMenu/>
       {loading && <Loader/>}
@@ -178,7 +183,7 @@ export const Users = () => {
               </tbody>
              
             </table>
-            {error.message && <div className={`${error.message ? 'Userserror-message' : '' }`}>{error.message}</div>}
+            {error.message && <div className={`${error.message ? 'usersError-message' : '' }`}>{error.message}</div>}
         </div>
         </div>
       </div>

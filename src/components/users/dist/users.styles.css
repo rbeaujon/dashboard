@@ -1,3 +1,28 @@
+.isDark .usersList-add {
+  filter: invert(100%);
+}
+.isDark .users-search {
+  color: #e8e8e8;
+}
+.isDark .users-search::placeholder {
+  color: #bdbaba;
+}
+.isDark .users-container .user-table table th {
+  background-color: #1d2d39;
+  color: #e8e8e8;
+}
+.isDark .users-container .user-table table th img {
+  filter: invert(100%);
+}
+.isDark .users-container .user-table table td {
+  background-color: #1d2d39;
+  color: #bdbaba;
+}
+.isDark .users-container .user-table table .users-action img {
+  background-color: transparent;
+  filter: invert(100%);
+}
+
 .users-search {
   position: absolute;
   right: 90px;
@@ -19,6 +44,7 @@
   top: 120px;
   width: 15px;
   z-index: 1;
+  background-color: transparent;
 }
 
 .usersList-add {
@@ -27,6 +53,7 @@
   top: 120px;
   width: 18px;
   z-index: 1;
+  background-color: transparent;
 }
 .usersList-add:hover {
   animation: rotate 2s linear infinite;
@@ -76,6 +103,7 @@
 .users-container .user-table table th img {
   width: 15px;
   margin-left: 5px;
+  background-color: transparent;
 }
 .users-container .user-table table th img:hover {
   animation: sort 0.7s ease-in-out;
@@ -122,6 +150,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: transparent;
 }
 .users-container .user-table table tbody .profile-pic-container img {
   position: absolute;
@@ -199,7 +228,7 @@
     transform: rotate(0);
   }
 }
-.users-container .Userserror-message {
+.users-container .usersError-message {
   position: absolute;
   top: 500%;
   left: 50%;

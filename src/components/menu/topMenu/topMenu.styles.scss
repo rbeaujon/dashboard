@@ -1,7 +1,32 @@
-* {
-  box-sizing:border-box;
-  font-family: 'Inter', sans-serif;
+
+$isDark: #0d3d5b;
+
+.isDark {
+  &.topMenu-container {
+    background-color: $isDark;
+    .title {color: white;}
+
+    .image-container {
+      .icons {
+        &.isDarkImage, &.notifications {
+          filter:invert(100%) brightness(80%); 
+        }
+       }
+    }
+    .profileInfo {
+      
+      &__level {
+        background-color: $isDark;
+        color: rgb(188, 186, 186);
+      }
+      &__name {
+        background-color: $isDark;
+        color: white;
+      }
+    }
+  }
 }
+
 .topMenu-container {
   width: 100vw;
   height: 100px;
@@ -17,6 +42,7 @@
     border: none;
     padding: 0;
     margin: 0;
+    
     
     span {
       display: block;
@@ -34,6 +60,7 @@
     left: 22vw;
     top: 34px;
     color: #555555;
+    background-color: transparent;
   }
 
   .image-container {
@@ -46,7 +73,8 @@
       position: absolute;
       width: 20px;
       top: 7px;
-      &.isDark {
+      background-color: transparent;
+      &.isDarkImage{
         right: 225px;
         filter:opacity(60%);
       }
@@ -59,7 +87,6 @@
       width: 40px;
       border-radius: 50px;
       right: 115px;
-
     }
   }
   
@@ -67,10 +94,11 @@
     position: absolute;
     right: 30px;
     top: 37px;
-    font-size: 10px;
+    font-size: 10px; 
     &__name {
       font-weight: 600;
       color: #000;
+      
     }
     &__level {
       top: 40px;

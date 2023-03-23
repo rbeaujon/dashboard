@@ -1,3 +1,42 @@
+$isDark: #1d2d39;;
+$font-light: #e8e8e8;
+$font-medium: #bdbaba;
+
+.isDark {
+  .usersList-add {
+    filter: invert(100%);
+  }
+  .users-search {
+    color: $font-light;
+    &::placeholder {
+      color: $font-medium;
+    }
+  }
+  .users-container {    
+    .user-table {    
+      table{
+        th {
+          background-color: $isDark;
+          color: $font-light;
+          img {
+            filter:invert(100%);
+          }
+        }
+        td {
+          background-color: $isDark;
+          color: $font-medium;
+          
+        }
+        .users-action {      
+          img {
+            background-color: transparent;
+            filter:invert(100%);
+          }
+        }
+      }
+    }
+  }
+}
 
 .users-search {
   position: absolute;
@@ -20,6 +59,7 @@
   top: 120px;
   width: 15px;
   z-index: 1;
+  background-color: transparent;
 }
 .usersList-add {
   position: absolute;
@@ -27,6 +67,7 @@
   top: 120px;
   width: 18px;
   z-index: 1;
+  background-color: transparent;
   &:hover {
     animation: rotate 2s linear infinite;
   }
@@ -74,6 +115,7 @@
         img {
           width: 15px;
           margin-left: 5px;
+          background-color: transparent;
          &:hover {
             animation: sort 0.7s ease-in-out ;
             @keyframes sort {
@@ -113,7 +155,7 @@
           justify-content: center;
           align-items: center;
           position: relative;
-
+          background-color: transparent;
           
           img {
             position: absolute;
@@ -122,6 +164,7 @@
             object-fit: cover;
             border-radius: 50%;
             width: 60px;
+           
           }
           .img-info {
             color: white;
@@ -176,7 +219,7 @@
       }
     }
 }
-.Userserror-message {
+.usersError-message {
   position: absolute;
   top: 500%;
   left:50%;

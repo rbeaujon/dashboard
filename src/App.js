@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   BrowserRouter,
   Routes,
   Route
 } from 'react-router-dom';
-import {ActiveMenuContext, ModeContext} from "./context/context";
+import {ActiveMenuContext, IsDarkContext} from "./context/context";
 
 import { Analytics } from './components/analytics';
 import { Calendar } from './components/calendar/calendar';
@@ -18,18 +18,22 @@ import './App.scss'
 function App() {
 
   const[activeMenu, setActiveMenu] = useState(false);
-  const[isDark, setIsDark] = useState('light');
+  const[isDark, setIsDark] = useState(false);
   
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    body.classList.toggle('isDark', isDark);
+  }, [isDark]);
 
   return (
     <ActiveMenuContext.Provider value={{ activeMenu, setActiveMenu }}>
-      <ModeContext.Provider value={{ isDark, setIsDark }}>
-          <div class="not-allowed">
+      <IsDarkContext.Provider value={{ isDark, setIsDark }}>
+          <div className="not-allowed">
             <span>Access not allowed</span>
           </div>
-          <BrowserRouter>
+          <BrowserRouter className={`${isDark ? 'isDark' : ''}`}>
             <Routes>
-              
               <Route exact path="/" element={<Dashboard />} />
               <Route exact path="/games" element={<Games />} />
               <Route exact path="/users" element={<Users />} />
@@ -39,7 +43,7 @@ function App() {
               <Route exact path="/settings" element={<Settings />} />   
             </Routes>
           </BrowserRouter>
-      </ModeContext.Provider>
+      </IsDarkContext.Provider>
     </ActiveMenuContext.Provider>
   );
 }
