@@ -104,7 +104,7 @@ export const Users = () => {
   },[users, search])
 
   return (
-    <div>
+    <div className="users">
       <TopMenu title="Users"/>
       <LeftMenu/>
       {loading && <Loader/>}

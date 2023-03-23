@@ -1,0 +1,29 @@
+.not-allowed {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgb(163, 17, 17);
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  overflow-x: hidden;
+
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: transparent;
+    color: white;
+    font-size: 24px;
+    font-weight: 500;
+   
+  }
+}
+@media only screen and (min-width: 321px) and (max-width: 991px) and (orientation: landscape) {
+    .not-allowed {
+      display: block;
+    }
+}

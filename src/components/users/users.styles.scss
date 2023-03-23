@@ -188,8 +188,7 @@
   font-weight: 500;
   font-family: 'Inter', sans-serif;
   text-transform: uppercase;
-  // animation: showMessages 5s ease-in-out forwards;
-  z-index: 200;
+
   
   @keyframes showMessages {
     0% {opacity: 0;}
@@ -201,7 +200,16 @@
 
   /*** RESPONSIVE DESIGN ***/
 
+/* BLOCKING LANDSCAPE VIEWS */
+
+@media only screen and (min-width: 321px) and (max-width: 991px) and (orientation: landscape) {
+  .users {
+    display: none;
+  }
+}  
+
 /* Mobiles */
+
 @media only screen and (max-width: 320px) {
 
 }
