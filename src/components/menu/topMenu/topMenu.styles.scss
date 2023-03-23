@@ -2,17 +2,25 @@
 $isDark: #0d3d5b;
 
 .isDark {
+
   &.topMenu-container {
     background-color: $isDark;
+    .hamburger {
+    color: white;
+      span {
+        background-color: rgb(255, 255, 255);;
+      }
+    }
     .title {color: white;}
 
     .image-container {
       .icons {
         &.isDarkImage, &.notifications {
-          filter:invert(100%) brightness(80%); 
+          filter:invert(100%); 
         }
        }
     }
+    
     .profileInfo {
       
       &__level {
@@ -149,7 +157,7 @@ $isDark: #0d3d5b;
       .icons {
         top: 10px;
         width: 16px;
-        &.isDark {
+        &.isDarkImage {
           right: 175px;
         }
         &.notifications {

@@ -8,6 +8,9 @@ $isDark: #0d3d5b;
         filter:invert(100%) brightness(100%) hue-rotate(190deg);
       }
     }
+    .closeButton {
+      color: white;
+    }
     .icons {
       background-color: $isDark;
       div {
