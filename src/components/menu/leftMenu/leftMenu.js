@@ -16,7 +16,7 @@ import settings from '../../../assets/icons/settings.png';
 export const LeftMenu = () => {
 
   const {activeMenu, setActiveMenu} = useContext(ActiveMenuContext);
-  const {isDark, setIsDark } = useContext(IsDarkContext);
+  const {isDark} = useContext(IsDarkContext);
 
   const navigate = useNavigate();
 
