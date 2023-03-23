@@ -177,7 +177,11 @@ $isDark: #0d3d5b;
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-
+  .topMenu-container {
+    .title {
+      left: 24vw;
+    }
+  }
 }
 
 /* Laptop */

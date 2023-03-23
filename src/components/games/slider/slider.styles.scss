@@ -168,7 +168,56 @@
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
+  .slider-container, .game-selected {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;  
+  }
+  .slider-container {
+    position: absolute;
+    top: 575px;
+    left: 60%; 
+    transform: translate(-50%,-50%);
 
+    .slider-grid {
+      width: 70vw; 
+      height: 26vh;
+      
+      .slider {
+        padding: 0; 
+        .image-container {
+          width: 120px; 
+          height: 127px; 
+          .image-frame {
+            div {
+              font-size: 0.7rem;
+            }
+          }
+        }
+      }
+    }
+    .prev {
+      top: 42%; 
+      left: 0;
+    }
+    .next {    
+      top: 42%;    
+      right: 0;
+    }
+  }
+  .game-selected {
+    position: absolute;
+    top: 120px;
+    left:60%;
+    width: 100%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    img {
+      width: 450px;
+      height: 300px;
+    }
+  }
 }
 
 /* Laptop */

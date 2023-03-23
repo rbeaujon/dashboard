@@ -66,7 +66,7 @@ $isDark: #0d3d5b;
       padding: 10px;
       margin-top: 10px;
       &:hover {
-        width: 14vw;
+        width: 15vw;
         padding: 10px;
         border-radius: 7px;
         background-color: #0994E2;
@@ -190,7 +190,17 @@ $isDark: #0d3d5b;
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-
+  .leftMenu {
+    width: 23vw;
+    
+    .icons {
+      div {
+        &:hover {
+          width: 16vw;
+        }
+      }
+    }
+  }
 }
 
 /* Laptop */

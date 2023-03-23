@@ -299,7 +299,10 @@ $font-medium: #bdbaba;
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-
+  .users-main {
+    left: 25vw;
+    height: 100%;
+  }
 }
 
 /* Laptop */
