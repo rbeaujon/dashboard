@@ -112,7 +112,7 @@ export const GameModal = (props) => {
 
     if (values.some((value) => value !== "" )) {
 
-      const dataFiltered = Object.entries(toEdit).filter(e => e[1] != "" )
+      const dataFiltered = Object.entries(toEdit).filter(e => e[1] !== "" )
       const header = {
         method: 'PUT',
         headers: {

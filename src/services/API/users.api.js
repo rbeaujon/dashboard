@@ -1,6 +1,6 @@
 export const UsersApi = async (header) => {
   
-  const url = "http://192.168.0.35:3001/users";
+  const url = "http://yologroup.rbeaujon.com/users";
   const response = await fetch(url, header);
   const data = await response.json();
   return {

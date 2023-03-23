@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import next  from '../../../assets/icons/next.png'
 import prev  from '../../../assets/icons/previous.png'
