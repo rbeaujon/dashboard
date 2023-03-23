@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+}
+
+.leftMenu {
+  width: 20vw;
+  height: 100vh;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.leftMenu .closeButton {
+  display: none;
+}
+.leftMenu .logo {
+  position: absolute;
+  top: 10px;
+  left: 42px;
+}
+.leftMenu .logo img {
+  width: 80px;
+}
+.leftMenu .icons {
+  position: absolute;
+  top: 115px;
+  left: 42px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.leftMenu .icons div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: 10px;
+  margin-top: 10px;
+}
+.leftMenu .icons div:hover {
+  width: 14vw;
+  padding: 10px;
+  border-radius: 7px;
+  background-color: #0994E2;
+}
+.leftMenu .icons div:hover img {
+  width: 30px;
+  background-color: transparent;
+  filter: invert(100%);
+}
+.leftMenu .icons div:hover label {
+  color: white;
+  background-color: transparent;
+}
+.leftMenu .icons div img {
+  width: 30px;
+  background-color: white;
+}
+.leftMenu .icons div label {
+  background-color: white;
+  width: 100%;
+  font-size: 14px;
+  color: #777777;
+  margin-left: 10px;
+  text-align: left;
+}
+
+/*** RESPONSIVE DESIGN ***/
+/* BLOCKING LANDSCAPE VIEWS */
+@media only screen and (min-width: 321px) and (max-width: 991px) and (orientation: landscape) {
+  .leftMenu {
+    display: none;
+  }
+}
+/* Mobiles */
+@media only screen and (min-width: 321px) and (max-width: 767px) {
+  .leftMenu {
+    transition: width 0.5s ease-in-out;
+    width: 0;
+    left: 0;
+    border-right: 0.5px solid #727171;
+    z-index: -1;
+  }
+  .leftMenu .container {
+    opacity: 0;
+  }
+  .leftMenu.enable {
+    display: block;
+    width: 100vw;
+    transition: width 0.5s ease-in-out forwards;
+    border-right: 0.5px solid #727171;
+    z-index: 100;
+  }
+  .leftMenu.enable.leftMenu {
+    display: block;
+  }
+  .leftMenu.enable .container {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+    transition-delay: 0.2s;
+  }
+  .leftMenu.enable .closeButton {
+    display: block;
+    position: absolute;
+    top: 32px;
+    left: 20px;
+    border: 0;
+    font-size: 25px;
+    opacity: 0.7s;
+    background-color: transparent;
+  }
+  .leftMenu.enable .logo {
+    position: absolute;
+    top: 5px;
+    left: 70vw;
+  }
+  .leftMenu.enable .logo img {
+    width: 80px;
+  }
+  .leftMenu.enable .icons {
+    width: 100%;
+    top: 90px;
+    opacity: 0.7;
+  }
+  .leftMenu.enable .icons div:hover {
+    width: 80vw;
+    padding: 10px;
+  }
+  .leftMenu.enable .icons div img {
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+  }
+  .leftMenu.enable .icons div label {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+}
+/* Tablet */
+/* Laptop */

@@ -123,6 +123,18 @@
     }
   }
 }
+.GameListError-message {
+  position: absolute;
+  bottom: 50%;
+  color: red;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  background-color: white;
+}
 
 /*** RESPONSIVE DESIGN ***/
 
@@ -153,6 +165,7 @@
     height: 28vh;
     top: 540px;
     left: 0px;
+    
     .gameList-container {
       
       table {

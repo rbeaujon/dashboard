@@ -132,7 +132,9 @@ export const GameList = (props) => {
               })}  
               </tbody>
           </table>
+          
         </div>
+        {Object.values(games).length === 0 && <div className={`${Object.values(games).length === 0  ? 'GameListError-message' : '' }`}>No games to show at this moment</div>}
       </div>
   </>
   )

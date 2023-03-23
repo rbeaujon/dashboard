@@ -72,6 +72,15 @@
 
 /*** RESPONSIVE DESIGN ***/
 
+/* BLOCKING LANDSCAPE VIEWS */
+
+@media only screen and (min-width: 321px) and (max-width: 991px) and (orientation: landscape) {
+  .leftMenu {
+    display: none;
+  }
+}
+
+
 /* Mobiles */
 @media only screen and (max-width: 320px) {
 

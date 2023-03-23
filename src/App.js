@@ -13,7 +13,7 @@ import { Games } from './components/games';
 import { Messages } from './components/messages';
 import { Settings } from './components/settings';
 import { Users } from './components/users';
-
+import './App.scss'
 
 function App() {
 
@@ -24,17 +24,21 @@ function App() {
   return (
     <ActiveMenuContext.Provider value={{ activeMenu, setActiveMenu }}>
       <ModeContext.Provider value={{ isDark, setIsDark }}>
-        <BrowserRouter>
-          <Routes>
-            <Route exact path="/" element={<Dashboard />} />
-            <Route exact path="/games" element={<Games />} />
-            <Route exact path="/users" element={<Users />} />
-            <Route exact path="/analytics" element={<Analytics />} />
-            <Route exact path="/messages" element={<Messages />} />
-            <Route exact path="/calendar" element={<Calendar />} />
-            <Route exact path="/settings" element={<Settings />} />   
-          </Routes>
-        </BrowserRouter>
+          <div class="not-allowed">
+            <span>Access not allowed</span>
+          </div>
+          <BrowserRouter>
+            <Routes>
+              
+              <Route exact path="/" element={<Dashboard />} />
+              <Route exact path="/games" element={<Games />} />
+              <Route exact path="/users" element={<Users />} />
+              <Route exact path="/analytics" element={<Analytics />} />
+              <Route exact path="/messages" element={<Messages />} />
+              <Route exact path="/calendar" element={<Calendar />} />
+              <Route exact path="/settings" element={<Settings />} />   
+            </Routes>
+          </BrowserRouter>
       </ModeContext.Provider>
     </ActiveMenuContext.Provider>
   );

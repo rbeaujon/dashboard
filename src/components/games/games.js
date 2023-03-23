@@ -63,7 +63,7 @@ export const Games = () => {
   },[isOk])
 
   return (
-    <div>
+    <div className="games-main">
       {(Object.entries(isOpen)).length > 0 && <GameModal isOpen={isOpen} setIsOpen={setIsOpen} isOk={isOk} setIsOk={setIsOk}  /> }
       {loading && <Loader/>}
       <TopMenu title="Games"/>
@@ -78,7 +78,8 @@ export const Games = () => {
         games={games} 
         setIsOpen ={setIsOpen}
       />
-      
+
+
     </div>
   )
   }
