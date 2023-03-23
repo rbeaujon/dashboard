@@ -67,7 +67,5 @@ export const Slider = (props) => {
        
       </div>
     </div>
-
-
   )
   }

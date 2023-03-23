@@ -24,7 +24,6 @@ export const TopMenu = (props) => {
         <span ></span>
       </button>  
 
-
       <label className="title">{props.title}</label>
         <div className="image-container">
           <img 
