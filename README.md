@@ -25,18 +25,27 @@ The Back-End and Front-End have their own dependencies package and runners under
 
 #### Mobile views
 
-<img src="/assets/images/games-mobile.png" width="80%">
-<img src="/assets/images/users-mobile.png" width="80%">
+<img src="/assets/images/games-mobile.png" width="40%">
+<img src="/assets/images/users-mobile.png" width="40%">
 
 #### Table views
 
-<img src="/assets/images/games-table.png" width="80%">
-<img src="/assets/images/users-table.png" width="80%">
+<img src="/assets/images/games-table.png" width="50%">
+<img src="/assets/images/users-table.png" width="50%">
 
 #### Desktop views
 
-<img src="/assets/images/games-desktop.png" width="80%">
-<img src="/assets/images/users-desktop.png" width="80%">
+<img src="/assets/images/games-desktop.png" width="60%">
+<img src="/assets/images/users-desktop.png" width="60%">
+
+#### Error views
+
+<img src="/assets/images/gamesError.png" width="60%">
+<img src="/assets/images/usersError.png" width="60%">
+
+#### Loading
+
+<img src="/assets/images/loading.png" width="60%">
 
 
 ### npm run +
