@@ -223,7 +223,6 @@ export const GameModal = (props) => {
   return (
     <div className={`usersModal-overlay ${isDark && "isDark"}`}>
 
-   
       {loading && <Loader/>}
       <div className={`gamesModal-frame ${isOpen.add ? 'add' : 
         isOpen.edit ? 'edit' :
