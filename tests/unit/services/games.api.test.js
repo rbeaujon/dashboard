@@ -38,7 +38,7 @@ describe('UsersApi', () => {
 			ok: true
 		})
     const spy = jest.spyOn(global, 'fetch');
-    const url = "http://192.168.0.35:3001/games";
+    const url = "http://yologroup.rbeaujon.com/games";
     const response = await GamesApi(header);
     expect(spy).toHaveBeenCalledWith(url, header);
     expect(spy).toHaveBeenCalledTimes(1);

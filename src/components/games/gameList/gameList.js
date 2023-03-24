@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import searchIcon from "../../../assets/icons/search.png"
+import searchIcon from "../../../assets/icons/find.png"
 import add from "../../../assets/icons/add.png"
 import edit from "../../../assets/icons/edit.png"
 import trash from "../../../assets/icons/trash.png"
@@ -62,27 +62,28 @@ export const GameList = (props) => {
 
   
   return (
-    <div className={`${isDark ? 'isDark' : 'isLight'}`}>
+    <div className={`${isDark ? 'isDark' : 'isLight'}`} >
       <img src={add} className="gameList-add" onClick={() => setIsOpen({add: true})}/> 
       <input 
         type="text" 
         className="gameList-search" 
         placeholder="Search ID or Name"
+        data-testid="search"
         onChange={(e) => setSearch( e.target.value)}
       />
       <img src={searchIcon} className="gameList-searchIcon" alt="search"/>
-      <div className="gameList-main">
+      <div className="gameList-main"  data-testid="game-list">
         <div className="gameList-container">
           <table>
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>ID</th>
+                  <th data-testid={'game-row'}>ID</th>
                   <th>Name</th>
                   <th>
-                    <div className='sortCategory'>
+                    <div className='sortCategory' data-testid='category' >
                       Category  
-                      <img src={sort} alt='sort'
+                      <img src={sort} alt='sortCategory'
                         onClick={() => {
                         setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
                         sortData("category")}}
@@ -92,7 +93,7 @@ export const GameList = (props) => {
                   <th>
                     <div className='sortDate'>
                       Creation Date  
-                      <img src={sort} alt='sort'
+                      <img src={sort} alt='sortDate'
                         onClick={() => {
                         setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
                         sortData("creation")}}
@@ -102,7 +103,7 @@ export const GameList = (props) => {
                   <th>
                     <div className='sortRange'>
                       Range
-                      <img src={sort} alt='sort'
+                      <img src={sort} alt='sortRange'
                         onClick={() => {
                         setSortedOrder(sortedOrder === "ASC" ? "DESC" : "ASC")
                         sortData("ranges")}}
