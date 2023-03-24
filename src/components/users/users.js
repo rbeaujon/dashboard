@@ -8,7 +8,7 @@ import add from "../../assets/icons/add.png"
 import edit from "../../assets/icons/edit.png"
 import trash from "../../assets/icons/trash.png"
 import sort from "../../assets/icons/sort.png"
-import searchIcon from "../../assets/icons/search.png"
+import searchIcon from "../../assets/icons/find.png"
 
 import './users.styles.scss';
 import { UsersModal } from "./usersModal";

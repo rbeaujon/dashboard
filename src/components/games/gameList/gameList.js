@@ -62,7 +62,7 @@ export const GameList = (props) => {
 
   
   return (
-    <div className={`${isDark ? 'isDark' : 'isLight'}`} >
+    <div className={`${isDark ? 'isDark' : ''}`} >
       <img src={add} className="gameList-add" onClick={() => setIsOpen({add: true})}/> 
       <input 
         type="text" 

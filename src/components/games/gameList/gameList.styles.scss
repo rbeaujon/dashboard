@@ -9,6 +9,9 @@ $font-medium: #bdbaba;
       color: $font-medium;
     }
   }
+  .gameList-searchIcon {
+    filter: invert(100%);
+  }
   .gameList-add {
     filter: invert(100%);
   }
@@ -105,6 +108,8 @@ $font-medium: #bdbaba;
         padding: 5px;
         font-size: 14px;
         white-space: nowrap;
+        background: white;
+        z-index: 100;
         img {
           width: 15px;
           margin-left: 5px;

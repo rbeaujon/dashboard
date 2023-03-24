@@ -3,7 +3,7 @@ $font-light: #e8e8e8;
 $font-medium: #bdbaba;
 
 .isDark {
-  .usersList-add {
+  .usersList-add, .users-searchIcon {
     filter: invert(100%);
   }
   .users-search {
@@ -111,6 +111,8 @@ $font-medium: #bdbaba;
         padding: 5px;
         font-size: 14px;
         white-space: nowrap;
+        background: white;
+        z-index: 100;
         
         img {
           width: 15px;
