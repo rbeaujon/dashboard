@@ -24,7 +24,7 @@ export const LeftMenu = () => {
     <div className={`leftMenu 
       ${activeMenu ? "enable" : ''} 
       ${isDark ? 'isDark' : 'isLight'}`
-      }>
+      } data-testid = "leftMenu">
       <div className={`container `}>
         <div className="logo">
           <img src={logo} alt="logo" />
