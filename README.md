@@ -2,13 +2,21 @@
 
 This repository is an admin dashboard for a gaming platform.
 The design was made using material design and is available on Figma.
-Figma design URL: [https://tinyurl.com/rbeaujon].
-It allows managing a games list and users, giving to the admin the possibility to filter the displayed data in the tables sorting by range, date, categories, etc.
+
+Design URL: [https://tinyurl.com/rbeaujon].
+
+It allows managing a games and users list, giving to the admin the possibility to filter the displayed data in the tables sorting by range, date, categories, etc.
+
 Additionally, the admin has the ability to delete, edit or create a new user or game.
+
+The 'Add' functionality is easily accessible from the top right corner of the tables with a '+' icon. Users can quickly add new items to their tables without the need to navigate to a separate page. In addition, the 'Edit' and 'Delete' actions are available for each item in the 'Action' column. Users can easily edit or delete an item by clicking the corresponding button in the 'Action' column. These features help streamline the user experience and allow for more efficient management of data.
+
+This project includes a feature to change between night and light mode. This feature allows users to customize the appearance of the application based on their preferences and environment. To use this feature, simply click on the moon and sun toggle button located at the top right corner of the screen.
 
 The app includes error handling and load indicators to improve the UX.
 
 This is an assignment for Front-End Developer, however, I preferred to create my own backend using NodeJS with MySQL.
+
 This one also handles the errors, validations, and reports by console and JSON for all the status codes or information available in the request.  
 Additionally, a CORS control was added because it is required by the hosting server for this app.
 
