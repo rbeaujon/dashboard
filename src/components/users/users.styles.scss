@@ -104,7 +104,7 @@ $font-medium: #bdbaba;
       thead {
         position: sticky;
         top: 0;
-        z-index: 10;
+        z-index: 1;
       }
       th {
         color: #818181;
@@ -112,7 +112,7 @@ $font-medium: #bdbaba;
         font-size: 14px;
         white-space: nowrap;
         background: white;
-        z-index: 100;
+        z-index: 2;
         
         img {
           width: 15px;

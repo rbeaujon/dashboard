@@ -122,21 +122,20 @@ $isDark: #0d3d5b;
     width: 0;
     left: 0;
     border-right: 0.5px solid rgb(114, 113, 113);
-    z-index: -1;
-    
+    z-index: 100;
     .container {
       opacity: 0;
     }
+    .icons {
+      display: none;
+    }
   
   &.enable {
-      &.leftMenu {
-        display: block;
-      }
       display: block;
       width: 100vw;
       transition: width 0.5s ease-in-out forwards;
       border-right: 0.5px solid rgb(114, 113, 113);
-      z-index: 200;
+      z-index: 100;
       
       .container {
         opacity: 1;
@@ -162,7 +161,7 @@ $isDark: #0d3d5b;
         }
       }
       .icons {
-        width: 100%;
+        display: block;
         top: 90px;
         opacity: 0.7;
         div {
