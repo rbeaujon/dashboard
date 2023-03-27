@@ -34,8 +34,8 @@ function App() {
           </div>
           <BrowserRouter className={`${isDark ? 'isDark' : ''}`}>
             <Routes>
-              <Route exact path="/" element={<Dashboard />} />
-              <Route exact path="/games" element={<Games />} />
+              <Route exact path="/dashboard" element={<Dashboard />} />
+              <Route exact path="/" element={<Games />} />
               <Route exact path="/users" element={<Users />} />
               <Route exact path="/analytics" element={<Analytics />} />
               <Route exact path="/messages" element={<Messages />} />
