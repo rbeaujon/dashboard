@@ -80,6 +80,9 @@ $isDark: #0d3d5b;
           color: white;
           background-color: transparent;
         } 
+        span {
+          color: rgb(255, 255, 255);
+        }
       }
       img {
         width: 30px;
@@ -93,6 +96,13 @@ $isDark: #0d3d5b;
         color: #777777;
         margin-left: 10px;
         text-align: left;
+      }
+      span {
+        color: red;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: 20px;
+        width: 100%;
       }
     }
   }
@@ -168,6 +178,9 @@ $isDark: #0d3d5b;
           &:hover {
             width: 80vw;
             padding: 10px;
+            span{
+              color: white;
+            }
           }
           img {
             width: 40px;
@@ -177,6 +190,13 @@ $isDark: #0d3d5b;
           label{
             font-size: 20px;
             margin-left: 20px;
+          }
+          span {
+            color: red;
+            font-size: 18px;
+            font-weight: 600;
+            margin-left: 40px;
+            width: 100%;
           }
         }
 
@@ -193,9 +213,10 @@ $isDark: #0d3d5b;
     width: 23vw;
     
     .icons {
+      left: 10px;
       div {
         &:hover {
-          width: 16vw;
+          width: 20vw;
         }
       }
     }
