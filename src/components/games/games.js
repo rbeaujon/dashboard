@@ -18,7 +18,7 @@ export const Games = () => {
   const[loading, setLoading] = useState(false);
   const[isOpen, setIsOpen] = useState({}) 
   const[isOk, setIsOk] = useState(false);
-  const[selectedGame, setSelectedGame] = useState(defaultImage);
+  const[selectedGame, setSelectedGame] = useState({image: defaultImage});
 
 
   const getGames = async () => {
@@ -40,7 +40,7 @@ export const Games = () => {
   
       if(response.status === 200) {
         setGames(response.data);
-        setSelectedGame(response.data[0].image)
+        setSelectedGame(response.data[0])
       }
       if(response.status === 500) {
         setError({getGames:'Ups! We have a problems getting the games list'})

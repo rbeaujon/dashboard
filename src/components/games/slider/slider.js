@@ -10,6 +10,7 @@ export const Slider = (props) => {
 
   const {games, error, selectedGame,  setSelectedGame} = props;
   const[currentIndex, setCurrentIndex] = useState(0);
+  const[showInfo, setShowInfo] = useState(false);
 
   const prevImage = () => {
     setCurrentIndex((currentIndex) =>
@@ -29,7 +30,8 @@ export const Slider = (props) => {
       <div className="slider-container"> 
         {error && <span className="slider-error">{error.getGames}</span> }
         <img src={prev} alt="prev" className="prev" onClick={prevImage} />
-        <div className="slider-grid">
+      
+       <div className="slider-grid">
           {games && games.slice(currentIndex, currentIndex + 6).map((game) => {
             return (
               <div key={game.id} className="slider">
@@ -40,7 +42,7 @@ export const Slider = (props) => {
                   <img 
                     src={game.image}
                     alt={game.name} 
-                    onClick={() => setSelectedGame(game.image)}
+                    onClick={() => setSelectedGame(game)}
                     onError={(e) => {
                       e.target.onerror = null;
                       e.target.src = defaultImage; 
@@ -55,14 +57,29 @@ export const Slider = (props) => {
       </div>
       <div className="game-selected">
         {games.length > 0
-        && <img 
-        src={selectedGame}
-        alt={selectedGame}
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = defaultImage; 
-        }}
-      /> 
+        && 
+        <div className="game-selected-main">
+          <img 
+            src={selectedGame.image}
+            alt={selectedGame.name}
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = defaultImage; 
+            }}
+          />
+          <div className={`game-selected-infoContainer 
+          ${showInfo ? 'showInfo' : 'hideInfo'}`}
+          onClick={() => showInfo ? setShowInfo(false): setShowInfo(true)}
+          >
+            <span>^</span>
+            <div className="game-selected-info">
+              <div><label>Name:</label> {selectedGame.name}</div>
+              <div><label>Range:</label> {selectedGame.ranges}+</div>
+              <div><label>Category:</label> {selectedGame.category}</div>
+              <div><label>Creation Date:</label> {selectedGame.creation}</div>
+            </div>
+          </div>
+        </div>
       }
        
       </div>

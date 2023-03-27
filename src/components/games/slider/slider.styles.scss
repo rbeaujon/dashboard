@@ -100,7 +100,41 @@
     border: 1px solid rgb(184, 183, 183);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.466);
   }
-  
+  .game-selected-infoContainer {
+    position:absolute;
+    width: 100%;
+    height: 15px;
+    bottom: 0px;
+    border-top: 0.5px solid rgba(2, 2, 2, 0.355);
+    border-radius: 0 0 10px 10px;
+    text-align: center;
+    background-color: #b0b0b0ee;
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+    overflow: hidden;
+    animation: showInfoGameSelected 2s ease-in-out;
+    &:hover {
+      span {
+       opacity: 0;
+      }
+      height: 150px;
+    }
+    
+
+    @keyframes showInfoGameSelected {
+      0% {height: 35%;}
+      100% {height: 0;}
+    }
+    .game-selected-info {
+      label {
+        color: #575757;
+        font-weight: 600;
+      }
+      text-align: left;
+      text-transform: capitalize;
+      padding: 20px;
+    }
+  }
 }
 
 /*** RESPONSIVE DESIGN ***/
@@ -112,17 +146,26 @@
 
 @media only screen and (min-width: 321px) and (max-width: 767px) {
 
+  .slider-main {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 50vh;
+  }
+
   .slider-container, .game-selected {
     flex-direction: column;
     align-content: center;
     align-items: center;
-    
+    flex-basis: 100%;
   }
   .slider-container {
     position: absolute;
     top: 400px;
     left: 50%; 
     transform: translate(-50%,-50%);
+    z-index: 2;
 
     .slider-grid {
       width: 90vw; 
@@ -151,19 +194,65 @@
     }
   }
   .game-selected {
-    position: absolute;
-    top: 80px;
-    left:50%;
+    position: relative;
     width: 100%;
-    transform: translate(-50%,-50%);
-    display: flex;
-    align-items: center;
-    img {
-      width: 340px;
-      height: 200px;
+    top: 0;
+    left: 0;
+
+    .game-selected-main {
+      position: relative;
+      img {
+        position: absolute;
+        top: 80px;
+        left:50%;
+        transform: translate(-50%,0%);
+        width: 340px;
+        height: 200px;
+      }
+      .game-selected-infoContainer{
+        position:absolute;
+        width: 340px;
+        height: 15px;
+        transform: translate(-50%,0%);
+        top: 270px;
+        left: 0;
+ 
+        &.showInfo {
+          animation: showInfoGameSelectedMobile 4s ease-in-out forwards;
+        }
+        @keyframes showInfoGameSelectedMobile {
+          0% {height: 15px;}
+          25% {height: 120px; top: 160px;}
+          75% {height: 120px; top: 160px;}
+          100% {height: 120px; top: 160px;}
+        }
+        &.hideInfo {
+          animation: hideInfoGameSelectedMobile 2s ease-in-out forwards;
+          span {
+            opacity: 1;
+            transition: opacity 4s ease-in-out ;
+          }
+        }
+        @keyframes hideInfoGameSelectedMobile {
+          0% {height: 120px; top: 160px;}
+          100% {height: 15px; }
+        }
+      }
+      .game-selected-info {
+        label {
+          color: #575757;
+          font-weight: 600;
+        }
+        text-align: left;
+        text-transform: capitalize;
+        padding: 0 20px;
+      }
+
     }
+
+
   }
-  
+
 }
 
 /* Tablet */
@@ -205,18 +294,42 @@
       right: 0;
     }
   }
+
   .game-selected {
-    position: absolute;
-    top: 120px;
-    left:60%;
+    position: relative;
     width: 100%;
-    transform: translate(-50%,-50%);
-    display: flex;
-    align-items: center;
-    img {
-      width: 450px;
-      height: 300px;
+    top: 120px;
+    left: 55%;
+
+    .game-selected-main {
+      position: relative;
+      img {
+        position: absolute;
+        top: 0px;
+        left:50%;
+        transform: translate(-50%,0%);
+        width: 450px;
+        height: 280px;
+      }
+      .game-selected-infoContainer{
+        position:absolute;
+        width: 450px;
+        height: 15px;
+        transform: translate(-50%,0%);
+        top: 270px;
+        left: 0;
+        &:hover {
+          span {
+            display: none;
+          }
+          height: 120px;
+          top: 160px;
+        }
+      }
+      
     }
+
+
   }
 }
 
