@@ -46,17 +46,46 @@ The Back-End and Front-End have their own dependencies package and runners under
 <img src="/assets/images/games-desktop.png" width="60%">
 <img src="/assets/images/users-desktop.png" width="60%">
 
+##### Dark Mode 
+
+<img src="/assets/images/games-desktop-dark.png" width="60%">
+<img src="/assets/images/users-desktop-dark.png" width="60%">
+
 #### Error views
 
 <img src="/assets/images/gamesError.png" width="60%">
 <img src="/assets/images/usersError.png" width="60%">
+
+##### Dark Mode 
+
+<img src="/assets/images/gamesError-dark.png" width="60%">
+<img src="/assets/images/usersError-dark.png" width="60%">
 
 #### Loading
 
 <img src="/assets/images/loading.png" width="60%">
 
 
-### npm run +
+
+### How to run the application?
+
+##### Clone the project
+1.- Open your terminal/command prompt and navigate to the directory where you want to clone the repository.
+2.- Run the command git clone https://github.com/rbeaujon/yolo.git. This will create a new directory called "yolo" in your current directory and clone the repository into it.
+4.- Once the cloning process is complete, navigate to the "yolo" directory by running the command cd yolo.
+
+##### Install the project's dependencies and 
+
+5.- Make sure that you have Node.js and npm (Node Package Manager) installed on your system. You can check the version of npm by running the command npm -v. [https://nodejs.org/en]
+6.- Run the command 'npm install' to install all the required dependencies for the project.
+
+##### Run the app
+git add 
+7.- After all the dependencies have been installed, run the command npm run start.
+This should start the development server and open up a new tab in your default web browser displaying the yolo app.
+
+
+### npm run + (Node Package Manager Commands)
 
     Runs in your command line and inside the project folder the following commands to:
 
@@ -64,8 +93,8 @@ The Back-End and Front-End have their own dependencies package and runners under
     test:  To run the testing mode, using react-scripts: 5.0.1 and jest-dom 5.16.5
     build: This sets and creates a build directory with a production build of your app
 
-```Example: npm run start.
-```
+Example: ```javascript npm run start.
+
 
 ### Browser View
 
@@ -87,10 +116,10 @@ Below are the available endpoints in the API:
 Server URL: http://localhost:3001
 
 Games Endpoint: /games
+
 Users Endpoint: /users
 
 
 ## Out-of-scope
   
 * Create conceptual and communication diagrams to understand visually the application flow.
-* Display the selected image info in the Games module.
