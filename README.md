@@ -69,19 +69,29 @@ The Back-End and Front-End have their own dependencies package and runners under
 
 ### How to run the application?
 
+The project was hosted on my server for easy access and evaluation.
+
+link [http://yologroup.rbeaujon.com/]
+
+however, if you need to install it locally, you can follow the instructions below:
+
+
 ##### Clone the project
 1.- Open your terminal/command prompt and navigate to the directory where you want to clone the repository.
+
 2.- Run the command git clone https://github.com/rbeaujon/yolo.git. This will create a new directory called "yolo" in your current directory and clone the repository into it.
-4.- Once the cloning process is complete, navigate to the "yolo" directory by running the command cd yolo.
 
-##### Install the project's dependencies and 
+3.- Once the cloning process is complete, navigate to the "yolo" directory by running the command cd yolo.
 
-5.- Make sure that you have Node.js and npm (Node Package Manager) installed on your system. You can check the version of npm by running the command npm -v. [https://nodejs.org/en]
-6.- Run the command 'npm install' to install all the required dependencies for the project.
+##### Install the project's dependencies
+
+4.- Make sure that you have Node.js and npm (Node Package Manager) installed on your system. You can check the version of npm by running the command npm -v. [https://nodejs.org/en].
+
+5.- Run the command 'npm install' to install all the required dependencies for the project.
 
 ##### Run the app
-git add 
-7.- After all the dependencies have been installed, run the command npm run start.
+
+6.- After all the dependencies have been installed, run the command npm run start.
 This should start the development server and open up a new tab in your default web browser displaying the yolo app.
 
 
@@ -93,7 +103,7 @@ This should start the development server and open up a new tab in your default w
     test:  To run the testing mode, using react-scripts: 5.0.1 and jest-dom 5.16.5
     build: This sets and creates a build directory with a production build of your app
 
-Example: ```javascript npm run start.
+Example: npm run start.
 
 
 ### Browser View
