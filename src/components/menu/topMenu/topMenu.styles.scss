@@ -129,6 +129,7 @@ $isDark: #0d3d5b;
     height: 70px;
     opacity: 1;
     transition: 0.5s opacity ease-in-out;
+    z-index: 3;
    
     &.activeMenu {
       opacity: 0;
@@ -138,7 +139,6 @@ $isDark: #0d3d5b;
       position: absolute;
       top: 20px;
       left: 20px;
-      z-index: 3;
       background-color: transparent;
       span {
         background-color: rgb(9, 9, 9);;
