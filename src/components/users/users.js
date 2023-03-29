@@ -58,7 +58,7 @@ export const Users = () => {
       }
     } catch (error) {
       setLoading(false);
-      setError({message:'Ups! We found a communication problem with the server, we are no able to show the slider game'})
+      setError({message:'Ups! We found a communication problem with the server, we are no able to display the users list'})
     }
   }
 
