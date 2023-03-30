@@ -82,12 +82,12 @@ export const Users = () => {
     
     if (sortBy === "email") {
       sortedOrder === 'ASC' 
-      ? sorted.sort((a, b) => a.category.localeCompare(b.category))
-      : sorted.sort((b, a) => a.category.localeCompare(b.category))
+      ? sorted.sort((a, b) => a.email.localeCompare(b.email))
+      : sorted.sort((b, a) => a.email.localeCompare(b.email))
     } else if (sortBy === "status") {
       sortedOrder === 'ASC' 
-      ? sorted.sort((a, b) => a.ranges - b.ranges)
-      : sorted.sort((b, a) => a.ranges - b.ranges)
+      ? sorted.sort((a, b) => a.status - b.status)
+      : sorted.sort((b, a) => a.status - b.status)
     } else if(search.length > 0) {
 
       if((/^[0-9]+$/).test(search) ){
