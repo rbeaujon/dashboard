@@ -27,75 +27,72 @@ export const UsersModal = (props) => {
   const [timeLeft, setTimeLeft] = useState(5);
   const {isDark} = useContext(IsDarkContext);
 
+
+const handleResponse = (response, successCallback, errorCallback) => {
+  setLoading(false);
+  if (response.status === 200) {
+    successCallback();
+    setError({ empty: [] });
+    setTimeout(() => {
+      setIsOpen({});
+      setIsOk(false);
+    }, 5000);
+  } else if (response.status === 500) {
+    setError({ ...error, message: 'Ups! delete failed' });
+    errorCallback();
+  } else if (response.status === 403) {
+    setError({ ...error, message: 'Ups! we had a communication problem ' });
+    errorCallback();
+  } else if (response.status === 404 || response.status === 400) {
+    setError({ ...error, message: 'Ups! Internal problem deleting the request' });
+    errorCallback();
+  }
+};
+
   const handleCreate = async () => {
 
     setLoading(true);
-
     const values = Object.values(toCreate);
-    
+
     if (values.some((value) => !value)) {
-      setError({ empty: values.map((value, index) => value ? '' : Object.keys(fields)[index]), message: "Missing fields, Registration Failed." });
+      setError({ empty: values.map((value, index) => (value ? '' : Object.keys(fields)[index])), message: 'Missing fields, Registration Failed.' });
       setTimeout(() => {
-        setError({ empty: values.map((value, index) => value ? '' : Object.keys(fields)[index])})
-      }, 5000)
-    } else if(!values.some(e => e === "")){
-        
+        setError({ empty: values.map((value, index) => (value ? '' : Object.keys(fields)[index])) });
+      }, 5000);
+    } else if (!values.some((e) => e === '')) {
       const emailIsOk = verifyEmail(toCreate.email);
-
-      if(emailIsOk){
-
-      const header = {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(toCreate)
-      };
-
-      try {
-        let response = await UsersApi(header)
-    
-        setLoading(false);
-    
-        if(response.status === 200) {
-          setIsOk(true)
-          setError({empty:[]})
-
-          setTimeout(() => {
-            setIsOk(false)
-            setIsOpen({})
-          }, 5000)
+      if (emailIsOk) {
+        const header = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(toCreate),
+        };
+        try {
+          const response = await UsersApi(header);
+          handleResponse(response, () => setIsOk(true), () => setError({ ...error, message: 'Ups! We found a communication problem with the server, we can not register the user' }));
+        } catch (error) {
+          setLoading(false);
+          setError({ ...error, message: 'Ups! We found a communication problem with the server, we can not register the user' });
         }
-        if(response.status === 500) {
-          setError({...error,message:'Error registering the user'})
-        }
-        if(response.status === 403) {
-          setError({...error,message:'Ups! We found a communication problem with the server'})
-        }
-        if(response.status === 404 || response.status === 400) {
-          setError({...error,message:'Ups! internal problems with the create request'})
-        }
-      } catch (error) {
-        setLoading(false);
-        setError({...error, message:'Ups! We found a communication problem with the server, we can not register the user'})
-      }
-      setTimeout(() => {
-        setError({empty:[]})
-      }, 5000)
-      } else {
-        setError({...error, message:'The email is not valid'});
         setTimeout(() => {
-        setError({empty:['email']})
-        }, 5000)
-      } 
-  }
-}
+          setError({ empty: [] });
+        }, 5000);
+      } else {
+        setError({ ...error, message: 'The email is not valid' });
+        setTimeout(() => {
+          setError({ empty: ['email'] });
+        }, 5000);
+      }
+    }
+  };
 
-  const handleEdit = async() => {
+  const handleEdit = async () => {
 
     setLoading(true);
-
+  
     const dataToEdit = {
       id: data.id,
       name: toEdit.name,
@@ -105,7 +102,7 @@ export const UsersModal = (props) => {
       image: toEdit.image
     }
     const values = Object.values(toEdit);
-
+  
     if (values.some((value) => value !== "" )) {
       const header = {
         method: 'PUT',
@@ -115,44 +112,35 @@ export const UsersModal = (props) => {
         },
         body: JSON.stringify(dataToEdit)
       };
-    
+  
       try {
-        let response = await UsersApi(header)
-    
-        setLoading(false);
-    
-        if(response.status === 200) {
-          setIsOk(true)
-          setError({empty:[]})
-
+        let response = await UsersApi(header);
+  
+        handleResponse(response, () => {
+          setIsOk(true);
+          setError({ empty: [] });
           setTimeout(() => {
-            setIsOk(false)
-            setIsOpen({})
-          }, 5000)
-        }
-        if(response.status === 500) {
-          setError({...error,message:'Error editing the game'})
-        }
-        if(response.status === 403) {
-          setError({...error,message:'Ups! We found a communication problem with the server'})
-        }
-        if(response.status === 404 || response.status === 400) {
-          setError({...error,message:'Ups! internal problems with the edit request'})
-        }
+            setIsOk(false);
+            setIsOpen({});
+          }, 5000);
+        }, () => {
+          setError({ ...error, message: 'Error editing the game' });
+        });
+  
       } catch (error) {
         setLoading(false);
-        setError({...error, message:'Ups! We found a communication problem with the server, we can not delete the game'})
+        setError({ ...error, message: 'Ups! We found a communication problem with the server, we can not delete the game' });
       }
       setTimeout(() => {
-        setError({empty:[]})
-      }, 5000)
+        setError({ empty: [] });
+      }, 5000);
     } else {
-      setError({empty:[], message: "Nothing to Edit"})
+      setError({ empty: [], message: "Nothing to Edit" });
       setTimeout(() => {
-        setError({empty:[]})
-      }, 5000)
-    } 
-  }
+        setError({ empty: [] });
+      }, 5000);
+    }
+  };
 
   const handleDelete = async () => {
 
@@ -164,36 +152,29 @@ export const UsersModal = (props) => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({id:data.id})
+      body: JSON.stringify({ id: data.id })
     };
   
     try {
-      let response = await UsersApi(header)
+      let response = await UsersApi(header);
   
-      setLoading(false);
-  
-      if(response.status === 200) {
+      handleResponse(response, () => {
         setIsOk(true);
-        setError({empty:[]})
+        setError({ empty: [] });
         setTimeout(() => {
-          setIsOpen({})
-          setIsOk(false)
-        }, 5000)
-      }
-      if(response.status === 500) {
-        setError({...error, message:'Ups! delete failed'})
-      }
-      if(response.status === 403) {
-        setError({...error, message:'Ups! we had a communication problem '})
-      }
-      if(response.status === 404 || response.status === 400) {
-        setError({...error, message:'Ups! Internal problem deleting the request'})
-      }
+          setIsOpen({});
+          setIsOk(false);
+        }, 5000);
+      }, () => {
+        setError({ ...error, message: 'Ups! delete failed' });
+      });
+  
     } catch (error) {
       setLoading(false);
-      setError({...error, message:'Ups! We found a communication problem with the server, we could not delete the user'})
+      setError({ ...error, message: 'Ups! We found a communication problem with the server, we could not delete the user' });
     }
-  }
+  };
+  
 
   useEffect(() => {
     let timer
