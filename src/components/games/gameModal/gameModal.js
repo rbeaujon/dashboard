@@ -19,7 +19,7 @@ export const GameModal = (props) => {
     range: '',
     image: ''
   }
-  const {isOpen, setIsOpen, isOk, setIsOk} = props;
+  const {isOpen, setIsOpen, isResponseOk, setIsResponseOk} = props;
   const {data} = isOpen;
   const [toCreate, setToCreate] = useState(fields);
   const [toEdit, setToEdit] = useState(fields);
@@ -54,7 +54,7 @@ export const GameModal = (props) => {
           },
           body: JSON.stringify(dataToCreate),
         };
-        handleApiRequest(header, 200, () => setIsOk(true), {
+        handleApiRequest(header, 200, () => setIsResponseOk(true), {
           500: 'Error registering the game',
           403: 'Ups! We found a communication problem with the server',
           404: 'Ups! internal problems with the create request',
@@ -79,7 +79,7 @@ export const GameModal = (props) => {
         },
         body: JSON.stringify({ edit: dataFiltered, id: data.id }),
       };
-      handleApiRequest(header, 200, () => setIsOk(true), {
+      handleApiRequest(header, 200, () => setIsResponseOk(true), {
         500: 'Error editing the game',
         403: 'Ups! We found a communication problem with the server',
         404: 'Ups! internal problems with the edit request',
@@ -97,7 +97,7 @@ export const GameModal = (props) => {
       },
       body: JSON.stringify({id:data.id})
     };
-    handleApiRequest(header, 200, () => setIsOk(true), {
+    handleApiRequest(header, 200, () => setIsResponseOk(true), {
       500: 'Error deleting the game',
       403: 'Ups! We found a communication problem with the server',
       404: 'Ups! internal problems with the delete request',
@@ -113,11 +113,11 @@ export const GameModal = (props) => {
       setLoading(false);
   
       if (response.status === successStatus) {
-        setIsOk(true);
+        setIsResponseOk(true);
         setError({ empty: [] });
         setTimeout(() => {
           setIsOpen({});
-          setIsOk(false);
+          setIsResponseOk(false);
         }, 5000);
         successCallback();
       } else {
@@ -132,7 +132,6 @@ export const GameModal = (props) => {
     }, 5000);
   };
   
-
   const handleDate = () => {
     const dateStr = toCreate.date.toString().split(' ');
     const dateObj = new Date(toCreate.date.toString());
@@ -143,7 +142,7 @@ export const GameModal = (props) => {
   useEffect(() => {
     let timer
     
-    if(isOk){
+    if(isResponseOk){
       timer = setTimeout(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
@@ -151,7 +150,7 @@ export const GameModal = (props) => {
       timer = 0
     }
     return () => clearTimeout(timer);
-  }, [isOk, timeLeft]);
+  }, [isResponseOk, timeLeft]);
 
   return (
     <div className={`usersModal-overlay ${isDark && "isDark"}`}>
@@ -261,7 +260,7 @@ export const GameModal = (props) => {
 
           </div>
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Created successfully 
             <div> 
               <label>close: </label>
@@ -370,7 +369,7 @@ export const GameModal = (props) => {
           </div>
 
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Edited successfully 
             <div> 
               <label>close: </label>
@@ -414,7 +413,7 @@ export const GameModal = (props) => {
           </div>
           </div>
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Deleted successfully 
             <div> 
               <label>close: </label>

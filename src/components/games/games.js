@@ -17,7 +17,7 @@ export const Games = () => {
   const[error, setError] = useState({});
   const[loading, setLoading] = useState(false);
   const[isOpen, setIsOpen] = useState({}) 
-  const[isOk, setIsOk] = useState(false);
+  const[isResponseOk, setIsResponseOk] = useState(false);
   const[selectedGame, setSelectedGame] = useState({image: defaultImage});
 
 
@@ -60,11 +60,11 @@ export const Games = () => {
 
   useEffect(() => {
     getGames();
-  },[isOk])
+  },[isResponseOk])
 
   return (
     <div className="games-main">
-      {(Object.entries(isOpen)).length > 0 && <GameModal isOpen={isOpen} setIsOpen={setIsOpen} isOk={isOk} setIsOk={setIsOk}  /> }
+      {(Object.entries(isOpen)).length > 0 && <GameModal isOpen={isOpen} setIsOpen={setIsOpen} isResponseOk={isResponseOk} setIsResponseOk={setIsResponseOk}  /> }
       {loading && <Loader/>}
       <TopMenu title="Games"/>
       <LeftMenu/>

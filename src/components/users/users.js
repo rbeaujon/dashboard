@@ -23,7 +23,7 @@ export const Users = () => {
   const[error, setError] = useState({});
   const[loading, setLoading] = useState(false);
   const[isOpen, setIsOpen] = useState({}) 
-  const[isOk, setIsOk] = useState(false);
+  const[isResponseOk, setIsResponseOk] = useState(false);
   const [sortedUsers, setSortedUsers] = useState(users);
   const [sortedOrder, setSortedOrder] = useState('ASC');
 
@@ -74,7 +74,7 @@ export const Users = () => {
     });
 
     setUsers(decodedProfileImageUsers);
-  },[isOk])
+  },[isResponseOk])
 
   const sortData = (sortBy) => {
 
@@ -117,7 +117,7 @@ export const Users = () => {
       <LeftMenu/>
       {loading && <Loader/>}
       
-      {(Object.entries(isOpen)).length > 0 && <UsersModal isOpen={isOpen} setIsOpen={setIsOpen} isOk={isOk} setIsOk={setIsOk}  /> }
+      {(Object.entries(isOpen)).length > 0 && <UsersModal isOpen={isOpen} setIsOpen={setIsOpen} isResponseOk={isResponseOk} setIsResponseOk={setIsResponseOk}  /> }
       <img src={add} alt="add" className="usersList-add" onClick={() => setIsOpen({add: true})}/> 
       <input 
             type="text" 

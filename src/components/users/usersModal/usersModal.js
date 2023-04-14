@@ -18,7 +18,7 @@ export const UsersModal = (props) => {
     level: '',
     image: ''
   }
-  const {isOpen, setIsOpen, isOk, setIsOk} = props;
+  const {isOpen, setIsOpen, isResponseOk, setIsResponseOk} = props;
   const {data} = isOpen;
   const [toCreate, setToCreate] = useState(fields);
   const [toEdit, setToEdit] = useState(fields);
@@ -35,7 +35,7 @@ const handleResponse = (response, successCallback, errorCallback) => {
     setError({ empty: [] });
     setTimeout(() => {
       setIsOpen({});
-      setIsOk(false);
+      setIsResponseOk(false);
     }, 5000);
   } else if (response.status === 500) {
     setError({ ...error, message: 'Ups! delete failed' });
@@ -72,7 +72,7 @@ const handleResponse = (response, successCallback, errorCallback) => {
         };
         try {
           const response = await UsersApi(header);
-          handleResponse(response, () => setIsOk(true), () => setError({ ...error, message: 'Ups! We found a communication problem with the server, we can not register the user' }));
+          handleResponse(response, () => setIsResponseOk(true), () => setError({ ...error, message: 'Ups! We found a communication problem with the server, we can not register the user' }));
         } catch (error) {
           setLoading(false);
           setError({ ...error, message: 'Ups! We found a communication problem with the server, we can not register the user' });
@@ -117,10 +117,10 @@ const handleResponse = (response, successCallback, errorCallback) => {
         let response = await UsersApi(header);
   
         handleResponse(response, () => {
-          setIsOk(true);
+          setIsResponseOk(true);
           setError({ empty: [] });
           setTimeout(() => {
-            setIsOk(false);
+            setIsResponseOk(false);
             setIsOpen({});
           }, 5000);
         }, () => {
@@ -159,11 +159,11 @@ const handleResponse = (response, successCallback, errorCallback) => {
       let response = await UsersApi(header);
   
       handleResponse(response, () => {
-        setIsOk(true);
+        setIsResponseOk(true);
         setError({ empty: [] });
         setTimeout(() => {
           setIsOpen({});
-          setIsOk(false);
+          setIsResponseOk(false);
         }, 5000);
       }, () => {
         setError({ ...error, message: 'Ups! delete failed' });
@@ -179,7 +179,7 @@ const handleResponse = (response, successCallback, errorCallback) => {
   useEffect(() => {
     let timer
     
-    if(isOk){
+    if(isResponseOk){
       timer = setTimeout(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
@@ -187,7 +187,7 @@ const handleResponse = (response, successCallback, errorCallback) => {
       timer = 0
     }
     return () => clearTimeout(timer);
-  }, [isOk, timeLeft]);
+  }, [isResponseOk, timeLeft]);
 
   return (
     <div className={`usersModal-overlay ${isDark && "isDark"}`}>
@@ -275,7 +275,7 @@ const handleResponse = (response, successCallback, errorCallback) => {
 
           </div>
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Created successfully 
             <div> 
               <label>close: </label>
@@ -394,7 +394,7 @@ const handleResponse = (response, successCallback, errorCallback) => {
           </div>
 
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Edited successfully 
             <div> 
               <label>close: </label>
@@ -448,7 +448,7 @@ const handleResponse = (response, successCallback, errorCallback) => {
           </div>
         </div>
           {error.message && <div className={`${error.message ? 'userError-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="user-isOk-message">
+          {isResponseOk && <div className="user-isOk-message">
             Deleted successfully 
             <div> 
               <label>close: </label>
