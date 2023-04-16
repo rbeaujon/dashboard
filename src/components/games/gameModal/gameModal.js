@@ -1,4 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
+import { useForm } from 'react-hook-form';
+
+
 import { checkUrlImage } from "../../../helpers/checkUrlImage";
 import Loader from "../../../helpers/Loader/loader";
 import { GamesApi } from "../../../services/API/games.api";
@@ -12,39 +15,36 @@ import { IsDarkContext } from "../../../context/context";
 
 export const GameModal = (props) => {
 
-  const fields = {
-    name: '', 
-    category: '', 
-    date: '',
-    range: '',
-    image: ''
-  }
+
   const {isOpen, setIsOpen, isResponseOk, setIsResponseOk} = props;
   const {data} = isOpen;
-  const [toCreate, setToCreate] = useState(fields);
-  const [toEdit, setToEdit] = useState(fields);
   const [error, setError] = useState({empty:[]});
   const [loading, setLoading] = useState(false);
   const [timeLeft, setTimeLeft] = useState(5);
   const {isDark} = useContext(IsDarkContext);
+  const defaultValues = data ? {
+    'name': data.name,
+    'category': data.category,
+    'date': data.creation,
+    'range': data.ranges,
+    'image': data.image
+  } : {};
+  const {register, handleSubmit, watch, setValue, formState: { errors } } = useForm({
+    defaultValues
+  })
 
-  
-  const handleCreate = async () => {
-    const values = Object.values(toCreate);
-  
-    if (values.some((value) => !value)) {
-      setError({ empty: values.map((value, index) => (value ? '' : Object.keys(fields)[index])), message: 'Missing fields, Registration Failed.' });
-    } else {
-      const validUrl = checkUrlImage(toCreate.image);
+  const handleCreate = async (dataForm) => {
+
+    const validUrl = checkUrlImage(dataForm.image);
   
       if (validUrl) {
-        const date = handleDate();
+        const date = handleDate(dataForm.date);
         const dataToCreate = {
-          name: toCreate.name,
-          category: toCreate.category,
-          image: toCreate.image,
+          name: dataForm.name,
+          category: dataForm.category,
+          image: dataForm.image,
           date,
-          range: toCreate.range,
+          range: dataForm.range,
         };
         const header = {
           method: 'POST',
@@ -61,16 +61,14 @@ export const GameModal = (props) => {
           400: 'Ups! internal problems with the create request',
         });
       } else {
-        setError({ ...error, message: 'URL is not valid' });
+        setError({...error, message:'URL is not valid'});
       }
-    }
+    
   };
   
-  const handleEdit = async () => {
-    const values = Object.values(toEdit);
-  
-    if (values.some((value) => value !== '')) {
-      const dataFiltered = Object.entries(toEdit).filter((e) => e[1] !== '');
+  const handleEdit = async (dataForm) => {
+ 
+      const dataFiltered = Object.entries(dataForm).filter((e) => e[1] !== '');
       const header = {
         method: 'PUT',
         headers: {
@@ -85,7 +83,6 @@ export const GameModal = (props) => {
         404: 'Ups! internal problems with the edit request',
         400: 'Ups! internal problems with the edit request',
       });
-    }
   };
 
   const handleDelete = async () => {
@@ -119,7 +116,7 @@ export const GameModal = (props) => {
           setIsOpen({});
           setIsResponseOk(false);
         }, 5000);
-        successCallback();
+        successCallback(response);
       } else {
         setError({ ...error, message: errorMessages[response.status] });
       }
@@ -131,10 +128,10 @@ export const GameModal = (props) => {
       setError({ empty: [] });
     }, 5000);
   };
-  
-  const handleDate = () => {
-    const dateStr = toCreate.date.toString().split(' ');
-    const dateObj = new Date(toCreate.date.toString());
+
+  const handleDate = (date) => {
+    const dateStr = date.toString().split(' ');
+    const dateObj = new Date(date.toString());
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
     return `${dateStr[2]}/${month}/${dateStr[3]}`
   }
@@ -162,26 +159,30 @@ export const GameModal = (props) => {
         }`}
       >
         {isOpen.add &&
-        <div className="gamesModal-add">
-          
+        <form onSubmit={handleSubmit(handleCreate)} className="gamesModal-add">
           <div className="form">
-            <div className={`form-div ${error.empty.includes('name') ? 'error-empty' : '' }`}>
-     
-              <input 
-                type="text" 
-                name="name" 
-                id="name"  
-                placeholder="Name" 
-                value={toCreate.name} 
-                onChange={(e) => setToCreate({...toCreate, name: e.target.value.toLowerCase()})}  
-              />
-              <span className="error-empty">{`${ error.empty.includes('name') ? '*' : ''}`}</span>
-            </div>
-            <div className={`form-div ${error.empty.includes('category') ? 'error-empty' : '' }`}>
-         
-              <select
-              onChange={(e) => setToCreate({...toCreate, category: e.target.value})}
-              >
+           
+              <div className="form-div">
+                <input type="text" 
+                  placeholder="Name"
+                  {...register('name',{
+                    required: 'name is required', 
+                    message: 'name is required',
+                    minLength: {
+                      value: 4,
+                      message: "This input must to have at least 4 characters"
+                    }
+                  })} 
+                />
+              </div>
+              <span className={`${errors.name ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.name && errors.name.message}</span>
+
+              <div className="form-div">
+                <select 
+                {...register('category', { 
+                    required: 'category is required' 
+                  }
+                )}>
                   <option value="">Category</option>
                   <option value="casino">Casino</option>
                   <option value="board">Board</option>
@@ -192,83 +193,64 @@ export const GameModal = (props) => {
                   <option value="sport">Sports</option>
                   <option value="racing">Racing</option>
                   <option value="puzzle">Puzzle</option>
+                </select>
+              </div>
+              <span className={`${errors.category ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.category && errors.category.message}</span>
 
-              </select>
-              <span className="error-empty">{`${ error.empty.includes('category') ? '*' : ''}`}</span>
-            </div>
-            
-            <div className={`form-div ${error.empty.includes('date') ? 'error-empty' : '' }`}>
-              <DatePicker
-                showIcon
-                selected={toCreate.date}
-                onChange={(e) => setToCreate({...toCreate, date: e})}
-                dateFormat="dd/MM/yyyy"
-                placeholderText="Date"
-                id="DatePicker"
-              />
-              <span className="error-empty">{`${ error.empty.includes('date') ? '*' : ''}`}</span>
+              <div className="form-div">
+                <DatePicker
+                  showIcon
+                  selected={watch('date')}
+                  {...register('date', { 
+                      required: 'date is required'
+                    }
+                  )}
+                  onChange={(date)=> setValue('date', date, { required: true })}
+                  dateFormat="dd/MM/yyyy"
+                  placeholderText="Date"
+                  id="DatePicker"
+                />
+              </div>
+              <span className={`${errors.date ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.date && errors.date.message}</span>
+              
+              <div className="form-div">
+                <select {...register('range', { 
+                  required: 'range is required' })}>
+                  <option value=""></option>
+                  {Array.from(Array(21), (e, i) => (
+                    <option key={i} value={i}>{i}</option>
+                  ))}
+                </select>
+              </div>
+              <span className={`${errors.range ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.range && errors.range.message}</span>
 
-            </div>
-            <div className={`form-div ${error.empty.includes('range') ? 'error-empty' : '' }`}>
-      
-              <select
-              name="range" 
-              id="range"  
-              placeholder="Range" 
-              value={toCreate.range} 
-              onChange={(e) => setToCreate({...toCreate, range:(e.target.value)})
-              }>
-                <option value=""></option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-                <option value="16">16</option>
-                <option value="17">17</option>
-                <option value="18">18</option>
-                <option value="19">19</option>
-                <option value="20">20</option> 
-                <option value="21">21</option>
-              </select> 
-                
-              <span className="error-empty">{`${ error.empty.includes('range') ? '*' : ''}`}</span>
-
-            </div>
-            <div className={`form-div ${error.empty.includes('image') ? 'error-empty' : '' }`}>
-         
-             <input 
-              type="text" 
-              name="image" 
-              id="image"  
-              placeholder="Image URL" 
-              value={toCreate.image} 
-              onChange={(e) => setToCreate({...toCreate, image: e.target.value})}
-            />
-             <span className="error-empty">{`${ error.empty.includes('image') ? '*' : ''}`}</span>
-            </div>
+              <div className="form-div">
+                <input 
+                  type="text" 
+                  placeholder="Image URL" 
+                  {...register('image', { 
+                    required: 'image is required', 
+                    pattern: {
+                      value: /https?:\/\/.+/i,
+                      message: "check the url format."
+                    }
+                    }
+                  )} />
+              </div>
+              <span className={`${errors.image ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.image && errors.image.message}</span>
 
           </div>
-          {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isResponseOk && <div className="isOk-message">
-            Created successfully 
-            <div> 
-              <label>close: </label>
-              {timeLeft}
-            </div>
-          </div>}
+            {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
+            {isResponseOk && <div className="isOk-message">
+              Created successfully 
+             <div> 
+             <label>close: </label>
+               {timeLeft}
+              </div>
+            </div>}
+
           <div className="buttons">
-              <div>
+             <div>
                 <input
                     type="button"
                     id="button-cancel"
@@ -280,40 +262,45 @@ export const GameModal = (props) => {
               </div>
               <div>
                 <input
-                  type="button"
+                  type="submit"
                   id="button-submit"
                   value="Add"
-                  onClick={() => {
-                    handleCreate()
-                  }}
                 />
               </div>
           </div>
-        </div>
+        </form>
         }
 
         {isOpen.edit &&
-        <div className="gamesModal-edit">
+        <form onSubmit={handleSubmit(handleEdit)} className="gamesModal-edit">
           <div className="form">
-            <div className={`form-div ${error.empty.includes('name') ? 'error-empty' : '' }`}>
-     
+            
+            <div className="form-div">
               <input 
                 type="text" 
                 name="name" 
                 id="name"  
                 placeholder="Name" 
-                value={toEdit.name || data.name} 
-                onChange={(e) => setToEdit({...toEdit, name: e.target.value})}  
+                onChange={(e) => setValue('name', e.target.value)}
+                {...register('name',{
+                  required: 'name is required', 
+                  message: 'name is required',
+                  minLength: {
+                    value: 4,
+                    message: "This input must to have at least 4 characters"
+                  }
+                })} 
               />
-              <span className="error-empty">{`${ error.empty.includes('name') ? '*' : ''}`}</span>
             </div>
-            <div className={`form-div ${error.empty.includes('category') ? 'error-empty' : '' }`}>
-         
-              <select
-              onChange={(e) => setToEdit({...toEdit, category: e.target.value})}
-              value={toEdit.category || data.category }
-              >
-                  <option value="">Select</option>
+            <span className={`${errors.name ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.name && errors.name.message}</span>
+
+            <div className="form-div">
+              <select 
+                {...register('category', { 
+                    required: 'category is required' 
+                  }
+                )}>
+                  <option value="">Category</option>
                   <option value="casino">Casino</option>
                   <option value="board">Board</option>
                   <option value="shooter">Shooter</option>
@@ -323,49 +310,48 @@ export const GameModal = (props) => {
                   <option value="sport">Sports</option>
                   <option value="racing">Racing</option>
                   <option value="puzzle">Puzzle</option>
+                </select>
+           
+            </div>
+            <span className={`${errors.category ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.category && errors.category.message}</span>
+            
+            <div className="form-div">
+              <input
+                {...register('date', { 
+                  required: 'date is required'
+                  }
+                )}
+              />
+            </div>
+            <span className={`${errors.date ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.date && errors.date.message}</span>
 
+            <div className="form-div">
+              <select {...register('range', { 
+                required: 'range is required' })}>
+                <option value=""></option>
+                {Array.from(Array(21), (e, i) => (
+                  <option key={i} value={i}>{i}</option>
+                ))}
               </select>
-              <span className="error-empty">{`${ error.empty.includes('category') ? '*' : ''}`}</span>
             </div>
-            <div className={`form-div ${error.empty.includes('date') ? 'error-empty' : '' }`}>
-      
-              <input 
-                type="text" 
-                name="date" 
-                id="date"  
-                placeholder="Date" 
-                value={toEdit.date || data.creation}
-                onChange={(e) => setToEdit({...toEdit, date: e.target.value})}
+            <span className={`${errors.range ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.range && errors.range.message}</span>
+
+            <div className="form-div">
+              <textarea 
+                  type="text" 
+                  placeholder="Image URL" 
+                  {...register('image', { 
+                    required: 'image is required', 
+                    pattern: {
+                      value: /https?:\/\/.+/i,
+                      message: "check the url format."
+                    }
+                    }
+                  )} 
               />
-              <span className="error-empty">{`${ error.empty.includes('date') ? '*' : ''}`}</span>
-
             </div>
-            <div className={`form-div ${error.empty.includes('range') ? 'error-empty' : '' }`}>
-      
-              <input 
-                type="text" 
-                name="range" 
-                id="range"  
-                placeholder="Range" 
-                value={toEdit.ranges || data.ranges} 
-                onChange={(e) => setToEdit({...toEdit, range: e.target.value})}
-              />
-              <span className="error-empty">{`${ error.empty.includes('range') ? '*' : ''}`}</span>
-
-            </div>
-            <div className={`form-div ${error.empty.includes('image') ? 'error-empty' : '' }`}>
-         
-             <textarea
-              type="text" 
-              name="image" 
-              id="image"  
-              placeholder="Image URL" 
-              value={toEdit.image || data.image} 
-              onChange={(e) => setToEdit({...toEdit, image: e.target.value})}
-            />
-             <span className="error-empty">{`${ error.empty.includes('image') ? '*' : ''}`}</span>
-            </div>
-
+            <span className={`${errors.image ? 'error-defined--show' : 'error-defined--hide'}`}>{errors.image && errors.image.message}</span>
+          
           </div>
 
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
@@ -389,16 +375,13 @@ export const GameModal = (props) => {
               </div>
               <div>
                 <input
-                  type="button"
+                  type="submit"
                   id="button-submit"
                   value="Accept"
-                  onClick={() => {
-                    handleEdit()
-                  }}
                 />
               </div>
           </div>
-        </div>
+        </form>
         }
 
         {isOpen.delete &&
