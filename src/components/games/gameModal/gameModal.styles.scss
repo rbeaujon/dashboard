@@ -92,18 +92,17 @@ $font-medium: #bdbaba;
         font-family: 'Inter', sans-serif;
       }
     }
-    .error-empty {
+    .error-defined--hide {
+      display: none;
+    }
+    .error-defined--show {
+      display: block;
       color: red;
-      input, select{
-        width: 220px;
-        border-radius: 5px;
-        border: 0.7px solid red;
-        margin-left: 15px;
-      }
-      
-      span {
-        margin-left: 5px;
-      }
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-top: 0;
+      font-size: 7.5px;
+      margin-left: 10px;
     }
   }
  
