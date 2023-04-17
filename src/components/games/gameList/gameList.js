@@ -16,41 +16,46 @@ export const GameList = (props) => {
   const[search, setSearch] = useState('');
   const {isDark } = useContext(IsDarkContext);
 
+
+  const sortByCategory = (a, b) => {
+    return sortedOrder === 'ASC' 
+      ? a.category.localeCompare(b.category)
+      : b.category.localeCompare(a.category);
+  }
+  const sortByCreation = (a, b) => {
+    const dateA = a.creation.split('/').reverse();
+    const dateB = b.creation.split('/').reverse();
+    return sortedOrder === 'ASC' 
+      ? new Date(dateA[0], dateA[1] - 1, dateA[2]) - new Date(dateB[0], dateB[1] - 1, dateB[2])
+      : new Date(dateB[0], dateB[1] - 1, dateB[2]) - new Date(dateA[0], dateA[1] - 1, dateA[2]);
+  }
+
+  const sortByRanges = (a, b) => {
+    return sortedOrder === 'ASC' 
+      ? a.ranges - b.ranges
+      : b.ranges - a.ranges;
+  }
+  
   const sortData = (sortBy) => {
     let sorted = [...sortedGames];
     if (sortBy === "category") {
-      sortedOrder === 'ASC' 
-      ? sorted.sort((a, b) => a.category.localeCompare(b.category))
-      : sorted.sort((b, a) => a.category.localeCompare(b.category))
+      sorted.sort(sortByCategory);
     } else if (sortBy === "creation") {
-      sortedOrder === 'ASC' 
-      ? sorted.sort((a, b) => {
-        const dateA = a.creation.split('/').reverse();
-        const dateB = b.creation.split('/').reverse();
-        return new Date(dateA[0], dateA[1] - 1, dateA[2]) - new Date(dateB[0], dateB[1] - 1, dateB[2]);
-      })
-      : sorted.sort((b, a) => {
-        const dateA = a.creation.split('/').reverse();
-        const dateB = b.creation.split('/').reverse();
-        return new Date(dateA[0], dateA[1] - 1, dateA[2]) - new Date(dateB[0], dateB[1] - 1, dateB[2]);
-      });
+      sorted.sort(sortByCreation);
     } else if (sortBy === "ranges") {
-      sortedOrder === 'ASC' 
-      ? sorted.sort((a, b) => a.ranges - b.ranges)
-      : sorted.sort((b, a) => a.ranges - b.ranges)
-    } else if(search.length > 0) {
-
-      if((/^[0-9]+$/).test(search) ){
-        sorted = games.filter(elem =>  String(elem.id).includes(String(search))); 
-      } else if(!(/^[0-9]+$/).test(search) ){
+      sorted.sort(sortByRanges);
+    } else if (search.length > 0) {
+      if ((/^[0-9]+$/).test(search)) {
+        sorted = games.filter(elem => String(elem.id).includes(String(search))); 
+      } else if (!(/^[0-9]+$/).test(search)) {
         sorted = games.filter(elem => elem.name.toLowerCase().includes(search.toLowerCase()))
       }
-
     } else {
       sorted = [...games]
     }
     setSortedGames(sorted);
   }
+  
 
   useEffect(() => {
     sortData();

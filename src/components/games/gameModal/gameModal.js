@@ -19,7 +19,7 @@ export const GameModal = (props) => {
     range: '',
     image: ''
   }
-  const {isOpen, setIsOpen, isOk, setIsOk} = props;
+  const {isOpen, setIsOpen, isResponseOk, setIsResponseOk} = props;
   const {data} = isOpen;
   const [toCreate, setToCreate] = useState(fields);
   const [toEdit, setToEdit] = useState(fields);
@@ -28,189 +28,121 @@ export const GameModal = (props) => {
   const [timeLeft, setTimeLeft] = useState(5);
   const {isDark} = useContext(IsDarkContext);
 
+  
   const handleCreate = async () => {
-    
-    setLoading(true);
-
     const values = Object.values(toCreate);
-    
+  
     if (values.some((value) => !value)) {
-      setError({ empty: values.map((value, index) => value ? '' : Object.keys(fields)[index]), message: "Missing fields, Registration Failed." });
-      setTimeout(() => {
-        setError({ empty: values.map((value, index) => value ? '' : Object.keys(fields)[index])})
-      }, 5000)
-    } else if(!values.some(e => e === "")){
-        
+      setError({ empty: values.map((value, index) => (value ? '' : Object.keys(fields)[index])), message: 'Missing fields, Registration Failed.' });
+    } else {
       const validUrl = checkUrlImage(toCreate.image);
-
-      if(validUrl){
-
-     
-      const date = handleDate();
-        
-      const dataToCreate = {
-        name: toCreate.name,
-        category: toCreate.category,
-        image: toCreate.image,
-        date,
-        range: toCreate.range
-      }
-
-      const header = {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(dataToCreate)
-      };
-
-      try {
-        let response = await GamesApi(header)
-    
-        setLoading(false);
-    
-        if(response.status === 200) {
-          setIsOk(true)
-          setError({empty:[]})
-
-          setTimeout(() => {
-            setIsOk(false)
-            setIsOpen({})
-          }, 5000)
-        }
-        if(response.status === 500) {
-          setError({...error,message:'Error registering the game'})
-        }
-        if(response.status === 403) {
-          setError({...error,message:'Ups! We found a communication problem with the server'})
-        }
-        if(response.status === 404 || response.status === 400) {
-          setError({...error,message:'Ups! internal problems with the create request'})
-        }
-      } catch (error) {
-        setLoading(false);
-        setError({...error, message:'Ups! We found a communication problem with the server, we can not register the game'})
-      }
-      setTimeout(() => {
-        setError({empty:[]})
-      }, 5000)
+  
+      if (validUrl) {
+        const date = handleDate();
+        const dataToCreate = {
+          name: toCreate.name,
+          category: toCreate.category,
+          image: toCreate.image,
+          date,
+          range: toCreate.range,
+        };
+        const header = {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(dataToCreate),
+        };
+        handleApiRequest(header, 200, () => setIsResponseOk(true), {
+          500: 'Error registering the game',
+          403: 'Ups! We found a communication problem with the server',
+          404: 'Ups! internal problems with the create request',
+          400: 'Ups! internal problems with the create request',
+        });
       } else {
-        setError({...error, message:'URL is not valid'});
-        setTimeout(() => {
-        setError({empty:[]})
-        }, 5000)
-      } 
-  }
-}
-
-  const handleEdit = async() => {
-    
-    setLoading(true);
-
+        setError({ ...error, message: 'URL is not valid' });
+      }
+    }
+  };
+  
+  const handleEdit = async () => {
     const values = Object.values(toEdit);
-
-    if (values.some((value) => value !== "" )) {
-
-      const dataFiltered = Object.entries(toEdit).filter(e => e[1] !== "" )
+  
+    if (values.some((value) => value !== '')) {
+      const dataFiltered = Object.entries(toEdit).filter((e) => e[1] !== '');
       const header = {
         method: 'PUT',
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({edit: dataFiltered, id:data.id})
+        body: JSON.stringify({ edit: dataFiltered, id: data.id }),
       };
-    
-      try {
-        let response = await GamesApi(header)
-    
-        setLoading(false);
-    
-        if(response.status === 200) {
-          setIsOk(true)
-          setError({empty:[]})
-
-          setTimeout(() => {
-            setIsOk(false)
-            setIsOpen({})
-          }, 5000)
-        }
-        if(response.status === 500) {
-          setError({...error,message:'Error editing the game'})
-        }
-        if(response.status === 403) {
-          setError({...error,message:'Ups! We found a communication problem with the server'})
-        }
-        if(response.status === 404 || response.status === 400) {
-          setError({...error,message:'Ups! internal problems with the edit request'})
-        }
-      } catch (error) {
-        setLoading(false);
-        setError({...error, message:'Ups! We found a communication problem with the server, we can not delete the game'})
-      }
-      setTimeout(() => {
-        setError({empty:[]})
-      }, 5000)
-    } else {
-      setError({empty:[], message: "Nothing to Edit"})
-      setTimeout(() => {
-        setError({empty:[]})
-      }, 5000)
-    } 
-  }
+      handleApiRequest(header, 200, () => setIsResponseOk(true), {
+        500: 'Error editing the game',
+        403: 'Ups! We found a communication problem with the server',
+        404: 'Ups! internal problems with the edit request',
+        400: 'Ups! internal problems with the edit request',
+      });
+    }
+  };
 
   const handleDelete = async () => {
-
-    setLoading(true);
-  
     const header = {
       method: 'DELETE',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({id:data.id})
     };
+    handleApiRequest(header, 200, () => setIsResponseOk(true), {
+      500: 'Error deleting the game',
+      403: 'Ups! We found a communication problem with the server',
+      404: 'Ups! internal problems with the delete request',
+      400: 'Ups! internal problems with the delete request',
+    });
+  };
+  
+  const handleApiRequest = async (header, successStatus, successCallback, errorMessages) => {
+    setLoading(true);
   
     try {
-      let response = await GamesApi(header)
-  
+      const response = await GamesApi(header);
       setLoading(false);
   
-      if(response.status === 200) {
-        setIsOk(true);
-        setError({empty:[]})
+      if (response.status === successStatus) {
+        setIsResponseOk(true);
+        setError({ empty: [] });
         setTimeout(() => {
-          setIsOpen({})
-          setIsOk(false)
-        }, 5000)
-      }
-      if(response.status === 500) {
-        setError({...error, message:'Ups! We have a problems to delete the game'})
-      }
-      if(response.status === 403) {
-        setError({...error, message:'Ups! We found a communication problem with the server'})
-      }
-      if(response.status === 404 || response.status === 400) {
-        setError({...error, message:'Ups! We internal problems with the delete request'})
+          setIsOpen({});
+          setIsResponseOk(false);
+        }, 5000);
+        successCallback();
+      } else {
+        setError({ ...error, message: errorMessages[response.status] });
       }
     } catch (error) {
       setLoading(false);
-      setError({...error, message:'Ups! We found a communication problem with the server, we can not delete the game'})
+      setError({ ...error, message: 'Ups! We found a communication problem with the server' });
     }
-  }
-
+    setTimeout(() => {
+      setError({ empty: [] });
+    }, 5000);
+  };
+  
   const handleDate = () => {
     const dateStr = toCreate.date.toString().split(' ');
     const dateObj = new Date(toCreate.date.toString());
     const month = String(dateObj.getMonth() + 1).padStart(2, '0');
     return `${dateStr[2]}/${month}/${dateStr[3]}`
   }
+
   useEffect(() => {
     let timer
     
-    if(isOk){
+    if(isResponseOk){
       timer = setTimeout(() => {
         setTimeLeft(timeLeft - 1);
       }, 1000);
@@ -218,7 +150,7 @@ export const GameModal = (props) => {
       timer = 0
     }
     return () => clearTimeout(timer);
-  }, [isOk, timeLeft]);
+  }, [isResponseOk, timeLeft]);
 
   return (
     <div className={`usersModal-overlay ${isDark && "isDark"}`}>
@@ -328,7 +260,7 @@ export const GameModal = (props) => {
 
           </div>
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Created successfully 
             <div> 
               <label>close: </label>
@@ -437,7 +369,7 @@ export const GameModal = (props) => {
           </div>
 
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Edited successfully 
             <div> 
               <label>close: </label>
@@ -481,7 +413,7 @@ export const GameModal = (props) => {
           </div>
           </div>
           {error.message && <div className={`${error.message ? 'error-message' : '' }`}>{error.message}</div>}
-          {isOk && <div className="isOk-message">
+          {isResponseOk && <div className="isOk-message">
             Deleted successfully 
             <div> 
               <label>close: </label>

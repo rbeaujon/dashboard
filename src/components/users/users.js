@@ -23,7 +23,7 @@ export const Users = () => {
   const[error, setError] = useState({});
   const[loading, setLoading] = useState(false);
   const[isOpen, setIsOpen] = useState({}) 
-  const[isOk, setIsOk] = useState(false);
+  const[isResponseOk, setIsResponseOk] = useState(false);
   const [sortedUsers, setSortedUsers] = useState(users);
   const [sortedOrder, setSortedOrder] = useState('ASC');
 
@@ -74,23 +74,26 @@ export const Users = () => {
     });
 
     setUsers(decodedProfileImageUsers);
-  },[isOk])
+  },[isResponseOk])
 
   const sortData = (sortBy) => {
 
     let sorted = [...sortedUsers];
+    let isNumericSearch = (/^[0-9]+$/).test(search);
+    let isSortingByStatus = sortBy === "status";
+    let isSortingByEmail = sortBy === "email";
     
-    if (sortBy === "email") {
+    if (isSortingByEmail) {
       sortedOrder === 'ASC' 
       ? sorted.sort((a, b) => a.email.localeCompare(b.email))
       : sorted.sort((b, a) => a.email.localeCompare(b.email))
-    } else if (sortBy === "status") {
+    } else if (isSortingByStatus) {
       sortedOrder === 'ASC' 
       ? sorted.sort((a, b) => a.status - b.status)
       : sorted.sort((b, a) => a.status - b.status)
     } else if(search.length > 0) {
 
-      if((/^[0-9]+$/).test(search) ){
+      if(isNumericSearch){
         sorted = users.filter(elem =>  String(elem.id).includes(String(search))); 
       } else if(!(/^[0-9]+$/).test(search) ){
         sorted = users.filter(elem => elem.name.toLowerCase().includes(search.toLowerCase()))
@@ -114,7 +117,7 @@ export const Users = () => {
       <LeftMenu/>
       {loading && <Loader/>}
       
-      {(Object.entries(isOpen)).length > 0 && <UsersModal isOpen={isOpen} setIsOpen={setIsOpen} isOk={isOk} setIsOk={setIsOk}  /> }
+      {(Object.entries(isOpen)).length > 0 && <UsersModal isOpen={isOpen} setIsOpen={setIsOpen} isResponseOk={isResponseOk} setIsResponseOk={setIsResponseOk}  /> }
       <img src={add} alt="add" className="usersList-add" onClick={() => setIsOpen({add: true})}/> 
       <input 
             type="text" 
