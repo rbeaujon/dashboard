@@ -1,4 +1,4 @@
-# YoloGroup
+# Dashboard
 
 This repository is an admin dashboard for a gaming platform.
 The design was made using material design and is available on Figma.
