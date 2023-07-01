@@ -1,1 +1,0 @@
-export {GameModal} from './gameModal';
