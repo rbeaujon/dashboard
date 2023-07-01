@@ -1,1 +1,0 @@
-export {GameList} from './gameList'
